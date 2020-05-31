@@ -1,0 +1,14 @@
+Mercedes    S350    Njemacka  Crna   5  9  86000    2014  102000  10.5  1  1  1  2  1  1  2  258  190  3000  3.0
+Audi        A8      Njemacka  Bijela 5  8  94000    2018  144000  9.5   1  1  1  2  1  1  2  286  210  3000  3.0
+Ferrari     f40     Italija   Crvena 2  9  112000   2003  999000  14.9  0  1  1  2  2  1  2  544  230  3600  3.6
+Volkswagen  Polo    Njemacka  Crna   5  5  70000    2011  12000   7.1   1  1  1  2  1  1  1  130  77   1600  1.6
+Ford        Focus   USA       Plava  3  5  259000   2004  3700    8.1   1  0  0  2  2  2  1  115  85   1900  1.8
+Volkswagen  Passat7 Njemacka  Crna   5  6  241203   2012  18500   8.7   1  0  1  2  1  1  1  105  77   1600  1.6
+BMW         F10     Njemacka  Crna   5  8  252331   2010  33000   9.3   1  1  1  2  2  2  2  250  180  3000  3.0
+BMW         320X    Njemacka  Crvena 5  8  85000    2016  73250   10.2  1  1  1  2  2  2  2  215  160  2000  2.0
+Skoda       Fabia   Ceska     Crvena 5  5  202100   2007  6990    6.4   1  1  1  2  1  1  1  90   47   1600  1.6
+Mercedes    C220    Njemacka  Bijela 5  6  103283   2016  42500   8.1   1  1  1  2  1  1  1  191  125  2200  2.2
+Audi        A5      Njemacka  Crna   5  6  200000   2011  21500   7.7   0  1  1  2  1  1  1  143  105  2000  2.0
+Audi        Q5      Njemacka  Crna   5  6  244000   2008  27500   8.1   1  1  1  2  1  3  1  170  125  2000  2.0
+Volkswagen  Golf2   Njemacka  Siva   3  4  300000   1985  2100    6.1   0  0  0  2  1  1  1  95   51   1600  1.6
+
