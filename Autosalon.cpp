@@ -1,7 +1,6 @@
-#include<iostream>			//otvorene potrebne biblioteke kako bi bila omogucena maksimalna funkcionalnost programa
+#include<iostream>
 #include<iomanip>
 #include<string>
-#include<vector>
 #include<fstream>
 #include<algorithm>
 #include <windows.h>
@@ -18,11 +17,11 @@ int izbor;
 
 void kratkiIspis();
 
-void promijeniBoju(int zeljenaBoja){
-     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), zeljenaBoja);					//ovo smo nasli na internetu
+void promijeniBoju(int zeljenaBoja){                                        //  funkcija za manipulaciju boje teksta pri ispisu
+     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), zeljenaBoja); //  izvor: stackoverflow
 }
 
-string brk = "\n********************************************************************************\n";	//bit ce koristena u nastavku za izbjegavanje ponavljanja
+string brk = "\n********************************************************************************\n";
 
 void welcome(){				//pocetna funkcija
     cout << "================================================================================\n";
@@ -36,7 +35,7 @@ void welcome(){				//pocetna funkcija
 }
 
 ostream& boldiraj(ostream& os){  //  funkcija za otvaranje tagova za boldiranje teksta
-    return os << "\e[1m";       
+    return os << "\e[1m";
 }
 
 ostream& ukloniBold(ostream& os){ //  funkcija za zatvaranje tagova za boldiranje
@@ -68,31 +67,24 @@ struct Kupac{
     Kupac() : ime(""), prezime(""), adresa(""), godine(0), brRacuna(0), nP(nacinPlacanja(1)) {}
 
     void unosKupcaZaKupovinu(){
+
     	cin.ignore();
-		ofstream lista("kupovina.txt", ios::app);
-    	lista<<"Podaci o kupcu:\n\n";
+
+    	char *Ime = new char[40];
+    	char *Prezime = new char[40];
+    	char *Adresa = new char[40];
 
     	cout<<"\tIme: ";
-    	char *Ime = new char[40];
 		cin.getline(Ime,40);
-		ime = Ime;
-		lista<<"Ime:			"<<ime<<endl;
 
 		cout<<"\tPrezime: ";
-    	char *Prezime = new char[40];
 		cin.getline(Prezime,40);
-		prezime = Prezime;
-    	lista<<"Prezime:		"<<prezime<<endl;
 
 		cout<<"\tAdresa: ";
-    	char *Adresa = new char[40];
 		cin.getline(Adresa,40);
-		adresa = Adresa;
-		lista<<"Adresa:			"<<adresa<<endl;
 
     	cout<<"\tBroj racuna: ";
     	cin>>this->brRacuna;
-    	lista<<"Broj racuna:		"<<brRacuna<<endl;
 
     	int x;
     	cout<<"\tNacin placanja: \n\t\t1. Gotovinom \n\t\t2. Karticno\n";
@@ -105,6 +97,23 @@ struct Kupac{
             	promijeniBoju(7);
 			}
 		}while(x<1 || x>2);
+
+
+		ofstream lista("kupovina.txt", ios::app);
+
+		lista<<"Podaci o kupcu:\n\n";
+
+        ime = Ime;
+		lista<<"Ime:			"<<ime<<endl;
+
+		prezime = Prezime;
+    	lista<<"Prezime:		"<<prezime<<endl;
+
+        adresa = Adresa;
+		lista<<"Adresa:			"<<adresa<<endl;
+
+        lista<<"Broj racuna:		"<<brRacuna<<endl;
+
 		switch(x){
     		case 1:
     			lista<<"Nacin placanja:		gotovinom"<<endl;
@@ -126,27 +135,38 @@ struct Kupac{
 
     	lista<<"\n**************************************************\n";
     	lista.close();
-    	
+
+    	delete[] Ime;
+    	delete[] Prezime;
+    	delete[] Adresa;
+
 	}
 
 	void prijavaKupca(){
 		system("cls");
 		cout << "================================================================================\n";
   		cout << "| \t\tPrije nego sto nastavite istrazivati nasu ponudu\t\t|"<<"\n";
-    	cout << "|\t\t    |Molimo Vas da unesete sljedece podatke|"<<setw(22)<<"|\n";
+    	cout << "|\t\t    |Molimo Vas da unesete sljedece podatke|"<<setw(21)<<"|\n";
     	cout << "================================================================================\n";
-		ofstream lista("logs.txt", ios::app);
-    	lista<<"\nPodaci o posjetiocima:\n\n";
+
+        char *Ime = new char[40];
+        char *Prezime = new char[40];
+
     	cin.ignore();
+
     	cout<<"\n\tIme: ";
-    	char *Ime = new char[40];
 		cin.getline(Ime,40);
-		ime = Ime;
-		lista<<"Ime:\t\t\t"<<ime<<endl;
 
 		cout<<"\tPrezime: ";
-    	char *Prezime = new char[40];
 		cin.getline(Prezime,40);
+
+
+    	ofstream lista("logs.txt", ios::app);
+    	lista<<"\nPodaci o posjetiocima:\n\n";
+
+    	ime = Ime;
+		lista<<"Ime:\t\t\t"<<ime<<endl;
+
 		prezime = Prezime;
     	lista<<"Prezime:\t\t"<<prezime<<endl;
 
@@ -157,14 +177,12 @@ struct Kupac{
 
     	lista<<"\n******************************************************\n";
     	lista.close();
+
+        delete[] Ime;
+        delete[] Prezime;
 	}
 
 };
-
-enum Stanje {nov = 1, polovan};
-enum Gorivo {dizel = 1, benzin, plin};
-enum Pogon  {prednji = 1, zadnji, _4x4};
-enum Transmisija {manual = 1, automatic};
 
 struct Motor{
 
@@ -196,10 +214,10 @@ struct Auto{
     bool jeServisiran;
     bool imaKlimu;
 
-    Stanje stanje;
-    Gorivo gorivo;
-    Pogon pogon;
-    Transmisija transmisija;
+    int stanje;         // 1-nov, 2-polovan
+    int transmisija;    // 1-manual, 2-automatic
+    int gorivo;         // 1-dizel, 2-benzin, 3-plin
+    int pogon;          // 1-prednji, 2-zadnji, 3- 4x4
 
     Motor motor;
 
@@ -217,148 +235,162 @@ struct Auto{
             jeRegistrovan = false;
             jeServisiran = false;
             imaKlimu = false;
-            stanje = (Stanje)1;
-            gorivo = (Gorivo)1;
-            pogon = (Pogon)1;
-            transmisija = (Transmisija)1;
+            stanje = 0;
+            transmisija = 0;
+            gorivo = 0;
+            pogon = 0;
         }
 
     Auto unosAuta(){
-        Auto a;
 
-        ofstream auta("auta.txt", ios::app);
+        Auto a;
 
         cin.ignore();
 
-        cout << "\n\tIme proizvodjaca: ";
-            getline(cin, a.proizvodjacAuta);
-            auta<<"\n"<<left<<setw(12)<<a.proizvodjacAuta;
+        cout << "\n\tIme proizvodjaca: ";   getline(cin, a.proizvodjacAuta);
 
-        cout << "\tIme modela: ";
-            getline(cin, a.modelAuta);
-            auta<<left<<setw(8)<<a.modelAuta;
+        cout << "\tIme modela: ";           getline(cin, a.modelAuta);
 
-        cout << "\tZemlja porijekla: ";
-            getline(cin, a.zemljaPorijekla);
-            auta<<left<<setw(10)<<a.zemljaPorijekla;
+        cout << "\tZemlja porijekla: ";     getline(cin, a.zemljaPorijekla);
 
-        cout << "\tBoja auta: ";
-            getline(cin, a.boja);
-            auta<<left<<setw(7)<<a.boja;
+        cout << "\tBoja auta: ";            getline(cin, a.boja);
+
 
         do{
         	cout << "\n\tBroj vrata(zajedno sa gepekom): ";
-            	cin >> a.brVrata;
-            if(a.brVrata!=3 && a.brVrata!=5){
+            cin >> a.brVrata;
+            if(a.brVrata < 2 && a.brVrata > 8){
             	promijeniBoju(4);
             	cout<<"\t\tPonovite unos"<<endl;
             	promijeniBoju(7);
 			}
-		}while(a.brVrata!=3 && a.brVrata!=5);
-		auta<<left<<setw(3)<<a.brVrata;
+		}while(a.brVrata < 2 || a.brVrata > 8);
 
-       	cout << "\tBroj stepeni prenosa: ";
-            cin >> a.brStepeniPrenosa;
-            auta<<left<<setw(3)<<a.brStepeniPrenosa;
-        cout << "\tKilometraza: ";
-            cin >> a.kilometraza;
-            auta << left <<setw(9)<<a.kilometraza;
+
+       	cout << "\tBroj stepeni prenosa: "; cin >> a.brStepeniPrenosa;
+
+        cout << "\tKilometraza: ";          cin >> a.kilometraza;
+
+
         do{
         	cout << "\tGodiste: ";
-            	cin >> a.godiste;
+            cin >> a.godiste;
             if(a.godiste<1886 || a.godiste>2020){
             	promijeniBoju(4);
             	cout<<"\t\tPonovite unos"<<endl;
             	promijeniBoju(7);
 			}
 		}while(a.godiste<1886 || a.godiste>2020);
-		auta<<left<<setw(6)<<a.godiste;
+
 
         do{
         	cout << "\tCijena: ";
-     	       cin >> a.cijena;
+        	cin >> a.cijena;
      	    if(a.cijena<0){
             	promijeniBoju(4);
             	cout<<"\t\tPonovite unos"<<endl;
             	promijeniBoju(7);
 			}
 		}while(a.cijena<0);
-		auta<<left<<setw(8)<<a.cijena;
 
-        cout << "\tPotrosnja na 100km: ";
-            cin >> a.potrosnja;
-            auta<<left<<setw(6)<<a.potrosnja;
+        cout << "\tPotrosnja na 100km: ";   cin >> a.potrosnja;
+
 
         cout << "\n\n\tZa sljedece unose koritite 1-DA, 0-NE\n";
-        cout << "\t\tRegistrovan: ";
-            	cin >> a.jeRegistrovan;
-		auta<<left<<setw(3)<<a.jeRegistrovan;
-        cout << "\t\tServisiran: ";
-            	cin >> a.jeServisiran;
-		auta<<left<<setw(3)<<a.jeServisiran;
-        cout << "\t\tKlima: ";
-	            cin >> a.imaKlimu;
-		auta<<left<<setw(3)<<a.imaKlimu;
 
-        int x;
+
+        cout << "\t\tRegistrovan: ";    cin >> a.jeRegistrovan;
+
+        cout << "\t\tServisiran: ";     cin >> a.jeServisiran;
+
+        cout << "\t\tKlima: ";          cin >> a.imaKlimu;
+
+
+
         cout << "\n\tSljedece karakteristike odaberite ponudjenim brojevima:\n";
+
         do{
-        	cout << "\t\tStanje (1-nov, 2-polovan): ";
-            	cin >> x;
-            if(x<1 || x>2){
+            cout << "\n\t\tStanje (1-nov, 2-polovan): ";
+            cin >> a.stanje;
+            if(a.stanje < 1 || a.stanje > 2){
             	promijeniBoju(4);
-            	cout<<"\t\tPonovite unos"<<endl;
+            	cout<<"\t\tPonovite unos "<<endl;
             	promijeniBoju(7);
 			}
-		}while(x<1 || x>2);
-			a.stanje = (Stanje)x;
-			auta<<left<<setw(3)<<a.stanje;
+		}while(a.stanje < 1 || a.stanje > 2);
+
+
         do{
         	cout << "\t\tGorivo (1-dizel, 2-benzin, 3-plin): ";
-            	cin >> x;
-            if(x<1 || x>3){
+            cin >> a.gorivo;
+            if(a.gorivo < 1 || a.gorivo > 3){
             	promijeniBoju(4);
             	cout<<"\t\tPonovite unos"<<endl;
             	promijeniBoju(7);
 			}
-		}while(x<1 || x>3);
-			a.gorivo = (Gorivo)x;
-			auta<<left<<setw(3)<<a.gorivo;
+		}while(a.gorivo < 1 || a.gorivo > 3);
+
+
+
         do{
         	cout << "\t\tPogon (1-prednji, 2-zadnji, 3-4x4): ";
-            	cin >> x;
-            if(x<1 || x>3){
+            cin >> a.pogon;
+            if(a.pogon < 1 || a.pogon > 3){
             	promijeniBoju(4);
             	cout<<"\t\tPonovite unos"<<endl;
             	promijeniBoju(7);
 			}
-		}while(x<1 || x>3);
-            a.pogon = (Pogon)x;
-            auta<<left<<setw(3)<<a.pogon;
+		}while(a.pogon < 1 || a.pogon > 3);
+
+
+
         do{
         	cout << "\t\tTransmisija (1-manual, 2-automatik): ";
-            	cin >> x;
-            if(x<1 || x>2){
+            cin >> a.transmisija;
+            if(a.transmisija < 1 || a.transmisija > 2){
             	promijeniBoju(4);
             	cout<<"\t\tPonovite unos"<<endl;
             	promijeniBoju(7);
 			}
-		}while(x<1 || x>2);
-            a.transmisija = (Transmisija)x;
-            auta<<left<<setw(3)<<a.transmisija;
+		}while(a.transmisija < 1 || a.transmisija > 2);
+
+
 
         cout << "\n\n\tKarakteristike motora:\n";
-        cout << "\t\tKonjske snage: ";
-            cin >> a.motor.konjskeSnage;
-            auta<<left<<setw(5)<<a.motor.konjskeSnage;
-        cout << "\t\tKilovati: ";
-            cin >> a.motor.kW;
-            auta<<left<<setw(5)<<a.motor.kW;
-        cout << "\t\tKubikaza: ";
-            cin >> a.motor.kubikaza;
-            auta<<left<<setw(6)<<a.motor.kubikaza<<endl;
+
+        cout << "\t\tKonjske snage: ";   cin >> a.motor.konjskeSnage;
+
+        cout << "\t\tKilovati: ";        cin >> a.motor.kW;
+
+        cout << "\t\tKubikaza: ";        cin >> a.motor.kubikaza;
+
         cout<<"\n--------------------------------------------------------------------------------\n";
+
+        ofstream auta("auta.txt", ios::app);
+
+            auta<<left<<setw(12)<<a.proizvodjacAuta;
+            auta<<left<<setw(8)<<a.modelAuta;
+            auta<<left<<setw(10)<<a.zemljaPorijekla;
+            auta<<left<<setw(7)<<a.boja;
+            auta<<left<<setw(3)<<a.brVrata;
+            auta<<left<<setw(3)<<a.brStepeniPrenosa;
+            auta<<left<<setw(9)<<a.kilometraza;
+            auta<<left<<setw(6)<<a.godiste;
+            auta<<left<<setw(8)<<a.cijena;
+            auta<<left<<setw(6)<<a.potrosnja;
+            auta<<left<<setw(3)<<a.jeRegistrovan;
+            auta<<left<<setw(3)<<a.jeServisiran;
+            auta<<left<<setw(3)<<a.imaKlimu;
+            auta<<left<<setw(3)<<a.stanje;
+            auta<<left<<setw(3)<<a.gorivo;
+            auta<<left<<setw(3)<<a.pogon;
+            auta<<left<<setw(3)<<a.transmisija;
+            auta<<left<<setw(5)<<a.motor.konjskeSnage;
+            auta<<left<<setw(5)<<a.motor.kW;
+            auta<<left<<setw(6)<<a.motor.kubikaza<<endl;
+
 		auta.close();
+
     return a;
     }
 
@@ -370,25 +402,25 @@ struct Auto{
             cout << "\t\t" <<setw(12)<< nizAuta[i].proizvodjacAuta << " " << nizAuta[i].modelAuta;
             cout << "\n\t--------------------------------------\n";
 
-            cout << "\n\tIme proizvodjaca:	" << left << nizAuta[i].proizvodjacAuta;
+            cout << "\n\tIme proizvodjaca:	" << nizAuta[i].proizvodjacAuta;
 
-            cout << "\n\tIme modela:		" << left << nizAuta[i].modelAuta;
+            cout << "\n\tIme modela:		" << nizAuta[i].modelAuta;
 
-            cout << "\n\tZemlja porijekla:	" << left << nizAuta[i].zemljaPorijekla;
+            cout << "\n\tZemlja porijekla:	" << nizAuta[i].zemljaPorijekla;
 
-            cout << "\n\tBoja auta:		" << left << nizAuta[i].boja;
+            cout << "\n\tBoja auta:		" << nizAuta[i].boja;
 
-            cout << "\n\tBroj vrata:		" << left << nizAuta[i].brVrata-1 << "/" <<nizAuta[i].brVrata;
+            cout << "\n\tBroj vrata:		" << nizAuta[i].brVrata-1 << "/" <<nizAuta[i].brVrata;
 
-            cout << "\n\tBroj stepeni prenosa:	" << left << nizAuta[i].brStepeniPrenosa << "+R";
+            cout << "\n\tBroj stepeni prenosa:	" << nizAuta[i].brStepeniPrenosa << "+R";
 
-            cout << "\n\tKilometraza:		" << left << nizAuta[i].kilometraza;
+            cout << "\n\tKilometraza:		" << nizAuta[i].kilometraza;
 
-            cout << "\n\tGodiste: 		" << left << nizAuta[i].godiste << ".";
+            cout << "\n\tGodiste: 		" << nizAuta[i].godiste << ".";
 
-            cout << "\n\tCijena: 		" << left << nizAuta[i].cijena << " KM";
+            cout << "\n\tCijena: 		" << nizAuta[i].cijena << " KM";
 
-            cout << "\n\tPotrosnja na 100km:	" << left << nizAuta[i].potrosnja << "l";
+            cout << "\n\tPotrosnja na 100km:	" << nizAuta[i].potrosnja << "l";
 
             cout << "\n\tRegistrovan:		"; nizAuta[i].jeRegistrovan ? cout << "DA" : cout << "NE";
 
@@ -475,15 +507,17 @@ void pretraziAuta(Auto nizAuta[], int brAuta){
     cout << "\n\n\tVas izbor za pretragu: ";
         cin >> izbor;
 
+    cout<<"\n--------------------------------------------------------------------------------\n";
+
     switch(izbor){
         case 1:
             sort(nizAuta, nizAuta+brAuta, porediCijeneVeca);
-          //  a.pregledAuta(nizAuta,brAuta);
+            a.pregledAuta(nizAuta,brAuta);
             break;
 
         case 2:
             sort(nizAuta, nizAuta+brAuta, porediCijeneManja);
-           // a.pregledAuta(nizAuta,brAuta);
+            a.pregledAuta(nizAuta,brAuta);
             break;
 
         case 3:
@@ -504,7 +538,7 @@ void pretraziAuta(Auto nizAuta[], int brAuta){
             cout << "\n\tLista automobila sa cijenom manjom od " <<cijena<< " KM \n";
             if(br > 0){
                 sort(autaPoCijeni, autaPoCijeni+br, porediCijeneVeca);    //  sortira se da ne bi doslo do random redanja po cijenama
-                //a.pregledAuta(autaPoCijeni, br);
+                a.pregledAuta(autaPoCijeni, br);
             }
             else cout << "\n\t\tNema takvih automobila.";
 
@@ -530,9 +564,10 @@ void pretraziAuta(Auto nizAuta[], int brAuta){
             }
 
             cout << "\n\tLista auta po imenu proizvodjaca: " << imeProizvodjaca << "\n";
-            //if(br > 0)
-                //a.pregledAuta(autaPoImenu, br);
-            //else cout << "\n\t\tNema takvih automobila.";
+
+            if(br > 0)
+                a.pregledAuta(autaPoImenu, br);
+            else cout << "\n\t\tNema takvih automobila.";
 
             delete[] autaPoImenu;
             break;
@@ -555,10 +590,11 @@ void pretraziAuta(Auto nizAuta[], int brAuta){
                 }
             }
             cout << "\n\tLista auta iz zemlje: " << zemlja << "\n";
-            /*if(br > 0)
+
+            if(br > 0)
                 a.pregledAuta(autaPoZemlji, br);
             else cout << "\n\t\tNema takvih automobila.";
-*/
+
             delete[] autaPoZemlji;
             break;
         }
@@ -582,27 +618,31 @@ void pretraziAuta(Auto nizAuta[], int brAuta){
 
             cout << "\n\tUnesite stanje auta (1-nov, 2-polovan): ";
             cin >> stanjeAuta;
-            Stanje stanje = (Stanje)stanjeAuta;
 
             cout << "\n\tUneiste gorivo (1-dizel, 2-benzin, 3-plin): ";
             cin >> gorivoAuta;
-            Gorivo gorivo = (Gorivo)gorivoAuta;
 
 
             Auto *auta = new Auto[brAuta];
             int br=0;
 
-            for(int i=0; i<brAuta; i++){
-                if(nizAuta[i].proizvodjacAuta == imeProizvodjaca && nizAuta[i].boja == bojaAuta && nizAuta[i].cijena <= cijenaAuta && nizAuta[i].stanje == stanje && nizAuta[i].gorivo == gorivo){
+            for(int i=0; i<brAuta; i++)
+            {
+                if(nizAuta[i].proizvodjacAuta == imeProizvodjaca && nizAuta[i].boja == bojaAuta && nizAuta[i].cijena
+                   <= cijenaAuta && nizAuta[i].stanje == stanjeAuta && nizAuta[i].gorivo == gorivoAuta)
+                {
                     auta[br++] = nizAuta[i];
                 }
             }
 
-            cout << "\n\tLista auta sa datim karakteristikama: ";
-            /*if(br > 0)
+            cout << "\n\tLista auta sa datim karakteristikama: \n";
+            if(br>0){
                 a.pregledAuta(auta, br);
-            else cout << "\n\t\tNema takvih automobila.";
-*/
+            }
+            else{
+                cout << "\n\tNema takvih automobila";
+            }
+
             delete[] auta;
             break;
         }
@@ -613,9 +653,11 @@ void pretraziAuta(Auto nizAuta[], int brAuta){
 }
 
 void ispisUplatnice(Auto nizAuta[], int br){
+
 	Kupac k;
 	k.unosKupcaZaKupovinu();
-    cout << "\n\tZelite li izvrisiti pretragu auta prije kupovine (y/n)? ";
+
+    cout << "\n\tZelite li izvrsiti pretragu auta prije kupovine (y/n)? ";
     cin.ignore();
     char get = cin.get();
 
@@ -625,55 +667,17 @@ void ispisUplatnice(Auto nizAuta[], int br){
 
     cout << "\n\tIspod je lista auta. Izaberite redni broj auta koje zelite kupiti\n";
 
-	ifstream auta("auta.txt");
-	while(auta>>nizAuta[br].proizvodjacAuta){
+        for(int i=0; i<br; i++)
+            cout << "\t\t" << i+1 << ". " << nizAuta[i].proizvodjacAuta << " " << nizAuta[i].modelAuta << " "
+            << " " << nizAuta[i].motor.kW << " kW\n";
 
-            auta>>nizAuta[br].modelAuta;
-            auta>>nizAuta[br].zemljaPorijekla;
-            auta>>nizAuta[br].boja;
-            auta>>nizAuta[br].brVrata;
-            auta>>nizAuta[br].brStepeniPrenosa;
-            auta>>nizAuta[br].kilometraza;
-            auta>>nizAuta[br].godiste;
-            auta>>nizAuta[br].cijena;
-            auta>>nizAuta[br].potrosnja;
 
-            auta>>nizAuta[br].jeRegistrovan;
-            auta>>nizAuta[br].jeServisiran;
-            auta>>nizAuta[br].imaKlimu;
+    	int izbor;
 
-            int zaStanje, zaGorivo, zaPogon, zaTransmisiju;
-//            if(nizAuta[br].stanje == 1) nizAuta[br].stanje=(Stanje)1;
-//            else nizAuta[br].stanje=(Stanje)2;
-
-            zaStanje = nizAuta[br].stanje;
-            zaGorivo = nizAuta[br].gorivo;
-            zaPogon = nizAuta[br].pogon;
-            zaTransmisiju = nizAuta[br].transmisija;
-
-//            zaStanje=(Stanje)zaStanje;
-//            zaGorivo=(Gorivo)zaGorivo;
-//            zaPogon=(Pogon)zaPogon;
-//            zaTransmisiju=(Transmisija)zaTransmisiju;
-
-            auta>>zaStanje;
-            auta>>zaGorivo;
-            auta>>zaPogon;
-            auta>>zaTransmisiju;
-
-            auta>>nizAuta[br].motor.konjskeSnage;
-            auta>>nizAuta[br].motor.kW;
-            auta>>nizAuta[br].motor.kubikaza;
-
-		 br++;
-		}
-	for(int i=0; i<br; i++) cout << "\t\t" << i+1 << ". " << nizAuta[i].proizvodjacAuta << " " << nizAuta[i].modelAuta << " " << nizAuta[i].motor.jacinaMotora << " " << nizAuta[i].motor.kW << " kW\n";
-    	
-    	int y;
     	do{
     		cout<<"\n\tIzbareite vozilo koje zelite kupiti: ";
-    		cin>>y;
-		}while(y<1 || y>br);
+    		cin>>izbor;
+		}while(izbor < 1 || izbor > br);
 
     string fajl = "uplatnica.txt";
     ofstream uplatnica("uplatnica.txt");
@@ -681,8 +685,8 @@ void ispisUplatnice(Auto nizAuta[], int br){
     uplatnica << "\t\t\tAutosalon 'KEJ' d.o.o.:\n";
     uplatnica << "------------------------------------------------------------\n";
     uplatnica << "\t\tIme i prezime: " << k.ime << " " << k.prezime << endl;
-    uplatnica << "\n\t\tINFORMACIJE O AUTOMOBILU: \n\tProizvodjac: " << nizAuta[y-1].proizvodjacAuta << "\n\tModel: " << nizAuta[y-1].modelAuta <<endl;
-	uplatnica << "\n\t\tIznos "<< nizAuta[y-1].cijena << " KM." << endl;
+    uplatnica << "\n\t\tINFORMACIJE O AUTOMOBILU: \n\tProizvodjac: " << nizAuta[izbor-1].proizvodjacAuta << "\n\tModel: " << nizAuta[izbor-1].modelAuta <<endl;
+	uplatnica << "\n\t\tIznos "<< nizAuta[izbor-1].cijena << " KM." << endl;
     uplatnica << "\n\t\t\tPotpis: _________________________\n";
     uplatnica << "------------------------------------------------------------\n";
     uplatnica << "\n\tTim Autosalona 'KEJ' Vam zeli sigurnu voznju\n";
@@ -721,11 +725,41 @@ void prikaziMeniK(){			//meni za kupca
 }
 
 void mainMeniK(Kupac k, Auto a){
+
 		prikaziMeniK();
 
-		Auto *nizAuta=new Auto[50];
-		int br=0;
-//		bool prviPut=true;
+        int br=0;
+    	Auto *nizAuta=new Auto[100];
+		ifstream auta("auta.txt");
+
+		while(auta>>nizAuta[br].proizvodjacAuta){
+
+            auta>>nizAuta[br].modelAuta;
+            auta>>nizAuta[br].zemljaPorijekla;
+            auta>>nizAuta[br].boja;
+            auta>>nizAuta[br].brVrata;
+            auta>>nizAuta[br].brStepeniPrenosa;
+            auta>>nizAuta[br].kilometraza;
+            auta>>nizAuta[br].godiste;
+            auta>>nizAuta[br].cijena;
+            auta>>nizAuta[br].potrosnja;
+
+            auta>>nizAuta[br].jeRegistrovan;
+            auta>>nizAuta[br].jeServisiran;
+            auta>>nizAuta[br].imaKlimu;
+
+            auta>>nizAuta[br].stanje;
+            auta>>nizAuta[br].gorivo;
+            auta>>nizAuta[br].pogon;
+            auta>>nizAuta[br].transmisija;
+
+            auta>>nizAuta[br].motor.konjskeSnage;
+            auta>>nizAuta[br].motor.kW;
+            auta>>nizAuta[br].motor.kubikaza;
+
+		 br++;
+		}
+
 
 	    do{
     	    cout<<"\n--------------------------------------------------------------------------------\n";
@@ -734,8 +768,8 @@ void mainMeniK(Kupac k, Auto a){
 
     	    if(cin.fail()){
 
-        	    cin.clear();
-    	        cin.ignore(1000,'\n');
+        	    cin.cls();
+    	        cin.ignore(1000, '\n');
 	            system("cls");
 
             	cout<<"\n--------------------------------------------------------------------------------\n\n";
@@ -745,11 +779,13 @@ void mainMeniK(Kupac k, Auto a){
 	            prikaziMeniK();
             	continue;
         	}
-        	if(izbor<1 || izbor>4){
-        		promijeniBoju(4);
-            	cout<<"\t\tPonovite unos"<<endl;
-        		promijeniBoju(7);
-			}
+                if(izbor<1 || izbor>4)
+                {
+                    promijeniBoju(4);
+                    cout<<"\t\tPonovite unos"<<endl;
+                    promijeniBoju(7);
+                }
+
 		}while(izbor<1 || izbor>4);
 
     	    switch(izbor){
@@ -760,12 +796,6 @@ void mainMeniK(Kupac k, Auto a){
                 	cout << boldiraj << "\n\t\t\t   Pregled svih automobila\n" << ukloniBold;
             	    cout << brk;
 
-//        	        if(prviPut){
-//    	                cout << "\n\tNema automobila za prikazati. Molimo prvo unesite neki automobil\n";
-//	                    cout << "\t------------------------------------------------------------------\n" ;
-//                    	cout << brk;
-//                	}
-//            	    else
                     a.pregledAuta(nizAuta, br);
         	        cout << endl;
 
@@ -778,11 +808,6 @@ void mainMeniK(Kupac k, Auto a){
 	                cout << boldiraj << "\n\t\t\t     Pretraga automobila\n" << ukloniBold;
                 	cout << brk;
 
-//            	    if(prviPut){
-//        	            cout << "\n\tNema automobila za pretrazivati. Molimo prvo unesite neki automobil\n";
-//    	                cout << "\t-------------------------------------------------------------------";
-//	                }
-//                	else
                     pretraziAuta(nizAuta, br);
             	    cout << endl;
 
@@ -812,10 +837,11 @@ void mainMeniK(Kupac k, Auto a){
 	        	cin.ignore();
 	            int get;
 
-            	cout << "\n\t-----------------------------------------";
-        	    cout << "\n\t\tIzlaz (0)\n\t\tNazad(1) ";
+            	cout << "\n\t-------------------------";
+        	    cout << "\n\t0. Izlaz\n\t1. Nazad ";
+        	    cout << "\n\t-------------------------";
         	    do{
-					cout<<"\n\tVas odabir: ";
+					cout<<"\n\t\tVas odabir: ";
 					cin>>get;
 					if(get<0 || get>1){
             			promijeniBoju(4);
@@ -840,163 +866,14 @@ void mainMeniK(Kupac k, Auto a){
         	        system("exit");
 				}
 			}
-
-
-
-	    delete[] nizAuta;
+    delete[] nizAuta;
 }
 
 void mainMeniA(Auto a){
-		Auto *nizAuta=new Auto[50];
-		int br=0;
-		bool prviPut=true;
-		prikaziMeniA();
-	    do{
-    	    cout<<"\n--------------------------------------------------------------------------------\n";
-	        cout << "\n\tVas izbor: ";
-        	cin >> izbor;
 
-    	    if(cin.fail()){
-
-        	    cin.clear();
-    	        cin.ignore(1000,'\n');
-	            system("cls");
-
-            	cout<<"\n--------------------------------------------------------------------------------\n\n";
-        	    cout << "\tUnijeli ste znak umjesto broja. Molimo pokusajte ponovo\n";
-    	        cout<<"\n--------------------------------------------------------------------------------\n\n";
-
-	            prikaziMeniA();
-            	continue;
-        	}
-        	if(izbor<1 || izbor>5){
-        		promijeniBoju(4);
-           		cout<<"\t\tPonovite unos"<<endl;
-        	    promijeniBoju(7);
-			}
-		}while(izbor<1 || izbor>5);
-
-    	    switch(izbor){
-	            case 1:
-                	system("cls");
-
-            	    cout<<brk;
-        	        cout << boldiraj << "\n\t\t\t      Unos automobila\n" << ukloniBold;
-    	            cout<<brk;
-
-	                nizAuta[br++]=a.unosAuta();
-                	cout << endl;
-
-            	    prviPut=false;
-
-    	            break;
-
-        	    case 2:
-    	            system("cls");
-
-	                cout << brk;
-                	cout << boldiraj << "\n\t\t\t   Pregled svih automobila\n" << ukloniBold;
-            	    cout << brk;
-
-//        	        if(prviPut){
-//    	                cout << "\n\tNema automobila za prikazati. Molimo prvo unesite neki automobil\n";
-//	                    cout << "\t------------------------------------------------------------------\n" ;
-//                    	cout << brk;
-//                	}else
-                    a.pregledAuta(nizAuta, br);
-        	        cout << endl;
-
-	                break;
-
-            	case 3:
-        	        system("cls");
-
-    	            cout << brk;
-	                cout << boldiraj << "\n\t\t\t     Pretraga automobila\n" << ukloniBold;
-                	cout << brk;
-
-//            	    if(prviPut){
-//        	            cout << "\n\tNema automobila za pretrazivati. Molimo prvo unesite neki automobil\n";
-//    	                cout << "\t-------------------------------------------------------------------";
-//	                }
-//                	else
-                    pretraziAuta(nizAuta, br);
-            	    cout << endl;
-
-    	            break;
-
-	            case 4:
-            	    system("cls");
-
-        	        cout << brk;
-    	            cout << boldiraj << "\n\t\t\t      Ispis uplatnice\n" << ukloniBold;
-	                cout << brk;
-
-//                	if(prviPut){
-//            	        cout << "\n\tNema automobila za kupiti. Nemoguce izdati uplatnicu\n";
-//        	            cout << brk;
-//    	            }
-//	                else
-                    ispisUplatnice(nizAuta, br);
-                	cout << endl;
-
-        	        break;
-
-    	        case 5:
-	                system("cls");
-	                cout << brk;
-					promijeniBoju(2);
-            	    cout << boldiraj << "\n\t\tHvala Vam na posjeti! Prijatno i dovidjenja!\n" << ukloniBold ;
-            	    promijeniBoju(7);
-            	    cout<<brk;
-        	        break;
-    	    }
-
-	        if(izbor==5) system("exit");
-	        else{
-	        	cin.ignore();
-	            int get;
-
-            	cout << "\n\t-----------------------------------------";
-        	    cout << "\n\t\tIzlaz (0)\n\t\tNazad(1) ";
-        	    do{
-					cout<<"\n\tVas odabir: ";
-					cin>>get;
-					if(get<0 || get>1){
-            			promijeniBoju(4);
-            			cout<<"\t\tPonovite unos"<<endl;
-        	    		promijeniBoju(7);
-					}
-				}while(get<0 || get>1);
-    	        cout<<"\n";
-    	        cout<<"\n";
-
-	            if(get==1){
-            	    system("cls");
-        	        mainMeniA(a);
-    	        }else{
-    	        	system("cls");
-	                cout << brk;
-					promijeniBoju(2);
-            	    cout << boldiraj << "\n\t\tHvala Vam na posjeti! Prijatno i dovidjenja!\n" << ukloniBold ;
-            	    promijeniBoju(7);
-            	    cout<<brk;
-        	        system("exit");
-				}
-			}
-
-
-
-	    delete[] nizAuta;
-}
-
-int main(){
-	welcome();
-	cout<<"\n--------------------------------------------------------------------------------\n";
-
-        int br=0;
-    	Auto *nizAuta=new Auto[50];
-		ifstream auta("auta.txt");
+    int br=0;
+    Auto *nizAuta=new Auto[50];
+    ifstream auta("auta.txt");
 
 		while(auta>>nizAuta[br].proizvodjacAuta){
 
@@ -1014,24 +891,10 @@ int main(){
             auta>>nizAuta[br].jeServisiran;
             auta>>nizAuta[br].imaKlimu;
 
-            int zaStanje, zaGorivo, zaPogon, zaTransmisiju;
-//            if(nizAuta[br].stanje == 1) nizAuta[br].stanje=(Stanje)1;
-//            else nizAuta[br].stanje=(Stanje)2;
-
-            zaStanje = nizAuta[br].stanje;
-            zaGorivo = nizAuta[br].gorivo;
-            zaPogon = nizAuta[br].pogon;
-            zaTransmisiju = nizAuta[br].transmisija;
-
-//            zaStanje=(Stanje)zaStanje;
-//            zaGorivo=(Gorivo)zaGorivo;
-//            zaPogon=(Pogon)zaPogon;
-//            zaTransmisiju=(Transmisija)zaTransmisiju;
-
-            auta>>zaStanje;
-            auta>>zaGorivo;
-            auta>>zaPogon;
-            auta>>zaTransmisiju;
+            auta>>nizAuta[br].stanje;
+            auta>>nizAuta[br].gorivo;
+            auta>>nizAuta[br].pogon;
+            auta>>nizAuta[br].transmisija;
 
             auta>>nizAuta[br].motor.konjskeSnage;
             auta>>nizAuta[br].motor.kW;
@@ -1039,6 +902,137 @@ int main(){
 
 		 br++;
 		}
+
+
+    prikaziMeniA();
+
+        do{
+    	    cout<<"\n--------------------------------------------------------------------------------\n";
+	        cout << "\n\tVas izbor: ";
+        	cin >> izbor;
+
+    	    if(cin.fail()){
+
+        	    cin.cls();
+    	        cin.ignore(1000,'\n');
+	            system("cls");
+
+            	cout<<"\n--------------------------------------------------------------------------------\n\n";
+        	    cout << "\tUnijeli ste znak umjesto broja. Molimo pokusajte ponovo\n";
+    	        cout<<"\n--------------------------------------------------------------------------------\n\n";
+
+	            prikaziMeniA();
+            	continue;
+        	}
+                if(izbor<1 || izbor>5)
+                {
+                    promijeniBoju(4);
+                    cout<<"\t\tPonovite unos"<<endl;
+                    promijeniBoju(7);
+                }
+
+		}while(izbor<1 || izbor>5);
+
+    	    switch(izbor){
+	            case 1:
+                	system("cls");
+
+            	    cout<<brk;
+        	        cout << boldiraj << "\n\t\t\t      Unos automobila\n" << ukloniBold;
+    	            cout<<brk;
+
+	                nizAuta[br++]=a.unosAuta();
+                	cout << endl;
+    	            break;
+
+        	    case 2:
+    	            system("cls");
+
+	                cout << brk;
+                	cout << boldiraj << "\n\t\t\t   Pregled svih automobila\n" << ukloniBold;
+            	    cout << brk;
+
+                    a.pregledAuta(nizAuta, br);
+        	        cout << endl;
+
+	                break;
+
+            	case 3:
+        	        system("cls");
+
+    	            cout << brk;
+	                cout << boldiraj << "\n\t\t\t     Pretraga automobila\n" << ukloniBold;
+                	cout << brk;
+
+                    pretraziAuta(nizAuta, br);
+            	    cout << endl;
+
+    	            break;
+
+	            case 4:
+            	    system("cls");
+
+        	        cout << brk;
+    	            cout << boldiraj << "\n\t\t\t      Ispis uplatnice\n" << ukloniBold;
+	                cout << brk;
+
+                    ispisUplatnice(nizAuta, br);
+                	cout << endl;
+
+        	        break;
+
+    	        case 5:
+	                system("cls");
+	                cout << brk;
+					promijeniBoju(2);
+            	    cout << boldiraj << "\n\t\tHvala Vam na posjeti! Prijatno i dovidjenja!\n" << ukloniBold ;
+            	    promijeniBoju(7);
+            	    cout<<brk;
+        	        break;
+    	    }
+
+	        if(izbor==5) system("exit");
+
+	        else{
+	        	cin.ignore();
+	            int get;
+
+            	cout << "\n\t-------------------------";
+        	    cout << "\n\t0. Izlaz\n\t1. Nazad ";
+        	    cout << "\n\t-------------------------";
+        	    do{
+					cout<<"\n\t\tVas odabir: ";
+					cin>>get;
+					if(get<0 || get>1){
+            			promijeniBoju(4);
+            			cout<<"\t\tPonovite unos"<<endl;
+        	    		promijeniBoju(7);
+					}
+				}while(get<0 || get>1);
+
+    	        cout<<"\n";
+    	        cout<<"\n";
+
+	            if(get==1){
+            	    system("cls");
+        	        mainMeniA(a);
+    	        }else{
+    	        	system("cls");
+	                cout << brk;
+					promijeniBoju(2);
+            	    cout << boldiraj << "\n\t\tHvala Vam na posjeti! Prijatno i dovidjenja!\n" << ukloniBold ;
+            	    promijeniBoju(7);
+            	    cout<<brk;
+        	        system("exit");
+				}
+			}
+    delete[] nizAuta;
+}
+
+
+int main(){
+	welcome();
+	cout<<"\n--------------------------------------------------------------------------------\n";
 
 	Auto a;
 	int izbor;
@@ -1063,31 +1057,40 @@ int main(){
 
 		system("cls");
 		int brPokusaja=0;
+
 		do{
 			cin.ignore();
-			cout<<"\n\n\n\t\t\tusername: ";
+
+			cout << "\n\n\n\t\t\tusername: ";
 			getline(cin, username);
-			cout<<"\n\t\t\tpassword: ";
-			cin>>password;
+			cout << "\n\t\t\tpassword: ";
+			cin >> password;
 			brPokusaja++;
-			if(username!="admin" && password!="admin" && brPokusaja<3){
+
+			if(username != "admin" && password != "admin" && brPokusaja<3){
+
 				system("cls");
 				promijeniBoju(4);
            		cout<<"\t\tNeisparvan unos";
            		promijeniBoju(7);
-           		cout<<"\t\t\t\tBroj pokusaja: "<<3-brPokusaja<<endl;
-			}else if(password!="admin" && brPokusaja<3){
+           		cout << "\t\t\t\tBroj pokusaja: " << 3-brPokusaja<<endl;
+
+			}else if(password != "admin" && brPokusaja<3){
+
 				system("cls");
 				promijeniBoju(4);
-           		cout<<"\t\tNeispravan password";
+           		cout << "\t\tNeispravan password";
            		promijeniBoju(7);
-           		cout<<"\t\t\t\tBroj pokusaja: "<<3-brPokusaja<<endl;
+           		cout << "\t\t\t\tBroj pokusaja: " << 3-brPokusaja<<endl;
+
 			}else if(username!="admin" && brPokusaja<3){
+
 				system("cls");
 				promijeniBoju(4);
-           		cout<<"\t\tNeispravan username";
+           		cout << "\t\tNeispravan username";
            		promijeniBoju(7);
-           		cout<<"\t\t\t\tBroj pokusaja: "<<3-brPokusaja<<endl;
+           		cout << "\t\t\t\tBroj pokusaja: " << 3-brPokusaja << endl;
+
 			}
 			if(brPokusaja==3){
 				system("cls");
@@ -1095,14 +1098,13 @@ int main(){
 			}
 		}while(username!="admin" || password!="admin");
 
-		mainMeniA(a);
+        mainMeniA(a);
 
 	}else{
-		Kupac k;
+        Kupac k;
 		k.prijavaKupca();
 		mainMeniK(k, a);
 	}
-
 
 cout<<"\n--------------------------------------------------------------------------------\n";
 return 0;
