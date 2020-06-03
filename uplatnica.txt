@@ -1,13 +1,13 @@
 ------------------------------------------------------------
 			Autosalon 'KEJ' d.o.o.:
 ------------------------------------------------------------
-		Ime i prezime: Emrah Koniic
+		Ime i prezime: 1 1
 
 		INFORMACIJE O AUTOMOBILU: 
 	Proizvodjac: Mercedes
 	Model: S350
 
-		Iznos 102000 KM.
+		Ukupni iznos: 114240 KM.
 
 			Potpis: _________________________
 ------------------------------------------------------------

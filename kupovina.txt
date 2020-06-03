@@ -50,3 +50,135 @@ Datum kupovine:		3.6.2020.
 Vrijeme kupovine:	11:46:6
 
 **************************************************
+Podaci o kupcu:
+
+Ime:			Kenan
+Prezime:		Genjac
+Adresa:			dfdfewf
+Nacin placanja:		karticno
+Broj racuna:		21233
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	24:26:17
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			Kenan
+Prezime:		Genjac
+Adresa:			fasff
+Nacin placanja:		karticno
+Broj racuna:		124341
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	24:37:8
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			kkkk
+Prezime:		
+Adresa:			gggg
+Nacin placanja:		karticno
+Broj racuna:		42341234
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	24:40:24
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			ss
+Prezime:		ss
+Adresa:			ssdasda
+Nacin placanja:		karticno
+Broj racuna:		123213
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	24:44:10
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			1
+Prezime:		1
+Adresa:			1
+Nacin placanja:		karticno
+Broj racuna:		2312312
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	24:44:58
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			1
+Prezime:		1
+Adresa:			1
+Nacin placanja:		karticno
+Broj racuna:		1212
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	24:46:32
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			1
+Prezime:		1
+Adresa:			1
+Nacin placanja:		karticno
+Broj racuna:		111
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	24:47:37
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			Kenan
+Prezime:		Genjac
+Adresa:			sdasd
+Nacin placanja:		karticno
+Broj racuna:		123332
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	24:48:24
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			1
+Prezime:		1
+Adresa:			1
+Nacin placanja:		karticno
+Broj racuna:		1123
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	24:50:58
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			1
+Prezime:		1
+Adresa:			1
+Nacin placanja:		karticno
+Broj racuna:		1
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	24:56:14
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			1
+Prezime:		1
+Adresa:			1
+Nacin placanja:		karticno
+Broj racuna:		12321
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	24:56:31
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			1
+Prezime:		1
+Adresa:			1
+Nacin placanja:		karticno
+Broj racuna:		12312
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	24:57:17
+
+**************************************************
