@@ -1,0 +1,52 @@
+Podaci o kupcu:
+
+Ime:			Adnan
+Prezime:		Adnanovic
+Adresa:			Kobilje
+Nacin placanja:		karticno
+Broj racuna:		1235435234
+Datum kupovine:		2.6.2020.
+Vrijeme kupovine:	16:47:21
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			Emrah
+Prezime:		Koniic
+Adresa:			Jahovac
+Nacin placanja:		gotovinom
+Datum kupovine:		2.6.2020.
+Vrijeme kupovine:	16:50:54
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			Emrah
+Prezime:		Sirotaric
+Adresa:			aksdhj
+Nacin placanja:		karticno
+Broj racuna:		0
+Datum kupovine:		2.6.2020.
+Vrijeme kupovine:	16:54:20
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			Keno
+Prezime:		Keno
+Adresa:			123
+Nacin placanja:		gotovinom
+Datum kupovine:		2.6.2020.
+Vrijeme kupovine:	16:54:47
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			Emrah
+Prezime:		Jamakovic
+Adresa:			asd
+Nacin placanja:		gotovinom
+Datum kupovine:		3.6.2020.
+Vrijeme kupovine:	11:46:6
+
+**************************************************

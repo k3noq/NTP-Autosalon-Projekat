@@ -1,13 +1,13 @@
 ------------------------------------------------------------
 			Autosalon 'KEJ' d.o.o.:
 ------------------------------------------------------------
-		Ime i prezime: Kenan Genjac
+		Ime i prezime: Emrah Koniic
 
 		INFORMACIJE O AUTOMOBILU: 
-	Proizvodjac: Audi
-	Model: A8
+	Proizvodjac: Mercedes
+	Model: S350
 
-		Iznos 144000 KM.
+		Iznos 102000 KM.
 
 			Potpis: _________________________
 ------------------------------------------------------------
