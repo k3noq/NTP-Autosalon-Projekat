@@ -206,7 +206,7 @@ struct Kupac{			//sturktura za kupca
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -621,7 +621,7 @@ struct Auto{		//struktura auto
 		{
 				if(cin.fail())
 				{
-	        	    cin.cls();
+	        	cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -652,7 +652,7 @@ struct Auto{		//struktura auto
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -684,7 +684,7 @@ struct Auto{		//struktura auto
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -715,7 +715,7 @@ struct Auto{		//struktura auto
         		if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -746,7 +746,7 @@ struct Auto{		//struktura auto
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -778,7 +778,7 @@ struct Auto{		//struktura auto
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -813,7 +813,7 @@ struct Auto{		//struktura auto
         		if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -853,7 +853,7 @@ struct Auto{		//struktura auto
         		if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -893,7 +893,7 @@ struct Auto{		//struktura auto
         		if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -935,7 +935,7 @@ struct Auto{		//struktura auto
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -964,7 +964,7 @@ struct Auto{		//struktura auto
 		{
 				if(cin.fail())
 				{
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -995,7 +995,7 @@ struct Auto{		//struktura auto
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -1026,7 +1026,7 @@ struct Auto{		//struktura auto
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -1061,7 +1061,7 @@ struct Auto{		//struktura auto
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -1090,7 +1090,7 @@ struct Auto{		//struktura auto
 		{
 				if(cin.fail())
 				{
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -1121,7 +1121,7 @@ struct Auto{		//struktura auto
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -1295,7 +1295,7 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -1344,7 +1344,7 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -1378,7 +1378,7 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -1649,7 +1649,7 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -1681,7 +1681,7 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -1713,7 +1713,7 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -1806,7 +1806,7 @@ void ispisUplatnice(Auto nizAuta[], int br){
 				if(cin.fail())
 				{
 
-	        	    cin.cls();
+	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
 	            	promijeniBoju(4);
@@ -2042,7 +2042,7 @@ void mainMeniK(Kupac k, Auto a){			//glavna funkcija za meni kupca
 
     	    if(cin.fail()){
 
-        	    cin.cls();
+        	    cin.clear();
     	        cin.ignore(1000, '\n');
 	            system("cls");
 
@@ -2142,7 +2142,7 @@ void mainMeniK(Kupac k, Auto a){			//glavna funkcija za meni kupca
 					if(cin.fail())
 					{
 
-		        	    cin.cls();
+		        	    cin.clear();
 		    	        cin.ignore(1000, '\n');
 
 		            	promijeniBoju(4);
@@ -2231,7 +2231,7 @@ void mainMeniA(Auto a){			//funkcija za glavni meni Admina
 
     	    if(cin.fail()){
 
-        	    cin.cls();
+        	    cin.clear();
     	        cin.ignore(1000,'\n');
 	            system("cls");
 
@@ -2327,7 +2327,7 @@ void mainMeniA(Auto a){			//funkcija za glavni meni Admina
 					if(cin.fail())
 					{
 
-		        	    cin.cls();
+		        	    cin.clear();
 		    	        cin.ignore(1000, '\n');
 
 		            	promijeniBoju(4);
@@ -2388,7 +2388,7 @@ int main(){
 		if(cin.fail())
 		{
 
-       	    cin.cls();
+       	    cin.clear();
    	        cin.ignore(1000, '\n');
 
            	promijeniBoju(4);
