@@ -3,6 +3,7 @@ Završni projekat iz predmeta Napredne tehnike programiranja
 
 Program nudi 2 moda: admin i kupac.
   
+  
   U admin modu se mogu unositi auta u .txt fajl koji sluzi kao "baza podataka"
   Također se nude opcije: pregled auta, pretraga auta, ispis uplatnice.
   
