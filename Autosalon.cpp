@@ -1,23 +1,21 @@
-#include<iostream> // jedi govna keno
-#include<iomanip>
-#include<string>
-#include<fstream>
-#include<algorithm> // funkcija sort
-#include <windows.h> // boje - janine duge
-#include<ctime> // vrime
+#include<iostream>		// biblioteke ukljucene za omogucen rad funkcija koje smo ukljucili u nas program
+#include<iomanip>		
+#include<string>		// omogucen rad sa stringovima
+#include<fstream>		// omogucena maipulacija fajlovima
+#include<algorithm>		// za funkciju sort
+#include <windows.h> 	//za boje- radi samo na windows os-u
+#include<ctime> 		// za koristenje funkcije za racunanje vremena
 
 /*
-	username: admin
-	password: admin
+	NAPOMENA: (za pristup admin mode-u potrebne sifre)
+		username: admin
+		password: admin
 */
 
 using namespace std;
 
-
-void kratkiIspis(); // provjerit da li postoji
-
-void promijeniBoju(int zeljenaBoja){                                        //  funkcija za manipulaciju boje teksta pri ispisu
-     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), zeljenaBoja); //  izvor: stackoverflow
+void promijeniBoju(int zeljenaBoja){                                        	//  funkcija za manipulaciju boje teksta pri ispisu
+     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), zeljenaBoja); 	//  izvor: stackoverflow
 }
 
 string brk = "\n********************************************************************************\n";
@@ -39,10 +37,9 @@ ostream& boldiraj(ostream& os){  //  funkcija za otvaranje tagova za boldiranje 
 
 ostream& ukloniBold(ostream& os){ //  funkcija za zatvaranje tagova za boldiranje
     return os << "\e[0m";
-} // bezopasni parazit
+} 
 
-
-float cijenaSaKamatom(float cijenaAuta, const float fixCijena, int brMjeseci=12){
+float cijenaSaKamatom(float cijenaAuta, const float fixCijena, int brMjeseci=12){	//rekurzivna funkcija za racunanje cijene ako se placa na 12 rata
 
     if(brMjeseci == 0){
         return cijenaAuta;
@@ -54,10 +51,9 @@ float cijenaSaKamatom(float cijenaAuta, const float fixCijena, int brMjeseci=12)
     }
 }
 
+enum nacinPlacanja {gotovina=1, karticno};	//enumeracija za nacin placanja
 
-enum nacinPlacanja {gotovina=1, karticno};
-
-struct Datum{
+struct Datum{					//sturktura za datum
     int dan, mjesec, godina;
 
     Datum(){
@@ -67,7 +63,7 @@ struct Datum{
     }
 };
 
-struct Kupac{
+struct Kupac{			//sturktura za kupca
 
     string ime;
     string prezime;
@@ -76,9 +72,9 @@ struct Kupac{
     nacinPlacanja nP;
     Datum datumKupovine;
 
-    Kupac() : ime(""), prezime(""), adresa(""), brRacuna(0), nP(nacinPlacanja(1)) {}
+    Kupac() : ime(""), prezime(""), adresa(""), brRacuna(0), nP(nacinPlacanja(1)) {}	//konsturktori koristreni za postavljanje pocetne vrijednosti
 
-    int unosKupcaZaKupovinu(){
+    int unosKupcaZaKupovinu(){		//strukturalna funkcija za unos podataka o kupcu
 
     	cin.ignore();
 
@@ -178,9 +174,28 @@ struct Kupac{
 
 		cout<<"\tAdresa: ";
 		cin.getline(Adresa,40);
-
+		
+		for(int i=0;i<strlen(Adresa);i++)
+			{
+				if(i==0)
+				{
+					if(Adresa[i]>=97 && Adresa[i]<=122)
+					{
+						Adresa[i] = Adresa[i] - 32;
+					}
+				}
+				else
+				{
+					if(Adresa[i]>=65 && Adresa[i]<=90)
+					{
+						Adresa[i] = Adresa[i] + 32;
+					}
+				}
+				
+			}
+		
     	int x;
-    	cout<<"\tNacin placanja: \n\t\t Gotovinom (1) \n\t\t Karticno (2)\n";
+    	cout<<"\tNacin placanja: \n\t\t Gotovinom (1) \n\t\t Karticno (2)\n\tVas odabir: ";		cin>>x;
 		
 		while(x < 1 || x > 2)
 		{
@@ -204,7 +219,7 @@ struct Kupac{
             	cin >> x;
 		}
 
-		ofstream lista("kupovina.txt", ios::app);
+		ofstream lista("kupovina.txt", ios::app);		//unos podataka u fajl kupovina.txt
 
 		lista<<"Podaci o kupcu:\n\n";
 
@@ -226,19 +241,24 @@ struct Kupac{
 
     			cout<<"\tBroj racuna: ";
     			cin>>this->brRacuna;
-
+    			
+    			while(this->brRacuna<1)
+				{
+					promijeniBoju(4);
+            		cout<<"\t\tPonovite unos: ";
+            		promijeniBoju(7);
+            		cin >> this->brRacuna;
+				}
+    			
 				lista<<"Broj racuna:		"<<brRacuna<<endl;
-
-				//float cijena = cijenaSaKamatom(cijenaAuta);
-
-                //cout << "\n\tUkupna cijena automobila nakon 12 rata: " << fixed << setprecision(2) << cijena << endl;
 
     			break;
 
 		}
+		
     	this->nP=(nacinPlacanja)x;
 
-    	time_t now=time(0);
+    	time_t now=time(0);			//funkcije za racunanje vemena
     	tm *ltm=localtime(&now);
     	lista<<"Datum kupovine:		"<<ltm->tm_mday<<"."<<1+ltm->tm_mon<<"."<<1900+ltm->tm_year<<"."<<endl;
     	lista<<"Vrijeme kupovine:	"<<1+ltm->tm_hour<<":"<<1+ltm->tm_min<<":"<<1+ltm->tm_sec<<endl;
@@ -255,10 +275,10 @@ struct Kupac{
     	delete[] Adresa;
 
     return x;
-
 	} 
 
-	void prijavaKupca(){
+	void prijavaKupca(){		//sturkturalna funkcija za pracenje posjecivanja programa
+	
 		system("cls");
 		cout << "================================================================================\n";
   		cout << "| \t\tPrije nego sto nastavite istrazivati nasu ponudu\t\t|"<<"\n";
@@ -320,7 +340,7 @@ struct Kupac{
 		
 		provjera = 1;
 		
-		while(provjera == 1)
+		while(provjera == 1)	//provjera za pravilnost unosa koristena na svim mjestima gdje je unos iskljucivo slovima
 		{
 			for(int i=0;i<strlen(Prezime);i++)
 			{
@@ -341,7 +361,7 @@ struct Kupac{
 			}
 		}
 		
-			for(int i=0;i<strlen(Prezime);i++)
+			for(int i=0;i<strlen(Prezime);i++)	//petlja koristena za pravilno unosenje podataka u fajl kako ne bi kasije bilo problema sa ucitavanjem istih
 			{
 				if(i==0)
 				{
@@ -356,12 +376,10 @@ struct Kupac{
 					{
 						Prezime[i] = Prezime[i] + 32;
 					}
-				}
-				
+				}				
 			}
 
-
-    	ofstream lista("logs.txt", ios::app);
+    	ofstream lista("logs.txt", ios::app);		//unos podataka u fajl logs.txt
     	lista<<"\nPodaci o posjetiocima:\n\n";
 
     	ime = Ime;
@@ -384,18 +402,18 @@ struct Kupac{
 
 }; 
 
-struct Motor{
+struct Motor{		//struktura motor
 
-    int konjskeSnage; //Emrah
+    int konjskeSnage;
     int kW;
-    int kubikaza; //1600
-    float jacinaMotora; //1.6
+    int kubikaza;
+    float jacinaMotora; 
 
     Motor(): konjskeSnage(0), kW(0), kubikaza(0), jacinaMotora(0.0) {}
 
 };
 
-struct Auto{
+struct Auto{		//struktura auto
 
     string proizvodjacAuta;
     string modelAuta;
@@ -441,7 +459,7 @@ struct Auto{
             pogon = 0;
         }
 
-    Auto unosAuta(){
+    Auto unosAuta(){		//strukturalna funkcija za unos podataka
 
         Auto a;
 
@@ -492,6 +510,15 @@ struct Auto{
 			}
 
         cout << "\tIme modela: ";           getline(cin, a.modelAuta);
+        
+        for(int i=0;i<a.modelAuta.length();i++)
+			{
+				if(a.modelAuta.at(i)>=97 && a.modelAuta.at(i)<=122)
+				{
+					a.modelAuta.at(i) = a.modelAuta.at(i) - 32;
+				}
+				
+			}
 
         cout << "\tZemlja porijekla: ";     getline(cin, a.zemljaPorijekla);
 
@@ -538,10 +565,10 @@ struct Auto{
 			}
 
         cout << "\tBoja auta: ";            getline(cin, a.boja);
-
+        
         provjera = 1;
 
-        while(provjera == 1)
+        while(provjera == 1) 
         {
         	for(int i=0;i<a.boja.length();i++)
         	{
@@ -561,6 +588,27 @@ struct Auto{
 				}
 			}
 		}
+        
+        for(int i=0;i<a.boja.length();i++)
+			{
+				if(i==0)
+				{
+					if(a.boja.at(i)>=97 && a.boja.at(i)<=122)
+					{
+						a.boja.at(i) = a.boja.at(i) - 32;
+					}
+				}
+				else
+				{
+					if(a.boja.at(i)>=65 && a.boja.at(i)<=90)
+					{
+						a.boja.at(i) = a.boja.at(i) + 32;
+					}
+				}
+				
+			}
+
+        
 
 		cout << "\n\tBroj vrata: ";
         cin >> a.brVrata;
@@ -569,7 +617,6 @@ struct Auto{
 		{
 				if(cin.fail())
 				{
-
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
@@ -875,7 +922,7 @@ struct Auto{
 
         cout << "\n\tSljedece karakteristike odaberite ponudjenim brojevima:\n";
 
-        cout << "\n\t\tStanje (1-nov, 2-polovan): ";		cin >> a.stanje;
+        cout << "\t\tStanje (1-nov, 2-polovan): ";		cin >> a.stanje;
 
         while(a.stanje < 1 || a.stanje > 2)
 		{
@@ -910,10 +957,8 @@ struct Auto{
 
         while(a.gorivo < 1 || a.gorivo > 3)
 		{
-
 				if(cin.fail())
 				{
-
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
@@ -1039,10 +1084,8 @@ struct Auto{
 
         while(a.motor.kW < 0)
 		{
-
 				if(cin.fail())
 				{
-
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
@@ -1128,7 +1171,7 @@ struct Auto{
     return a;
     } 
 
-    void pregledAuta(Auto nizAuta[], int brAuta){
+    void pregledAuta(Auto nizAuta[], int brAuta){	//strukturalna funkcija za pregled auta
 
         for(int i=0; i<brAuta; i++){
 
@@ -1215,17 +1258,17 @@ struct Auto{
 
 };
 
-bool porediCijeneVeca(Auto a, Auto b){
+bool porediCijeneVeca(Auto a, Auto b){		//funkcija za poredjenje auta
 
     return a.cijena > b.cijena;
 } 
 
-bool porediCijeneManja(Auto a, Auto b){
+bool porediCijeneManja(Auto a, Auto b){		//funkcija za poredjenje auta
 
     return a.cijena < b.cijena;
 }
 
-void pretraziAuta(Auto nizAuta[], int brAuta){
+void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 
     cout << "\n\tOdaberite neku opciju filtriranja";
     cout << "\n\t\t1. Sortiraj po cijeni(veca-manja)";
@@ -1447,7 +1490,7 @@ void pretraziAuta(Auto nizAuta[], int brAuta){
 
         case 5:
         {
-            string zemlja; // uslov
+            string zemlja; 
             cout << "\n\tUnesite zemlju iz koje zelite da se prikazu auta";
             cout << "\n\tZemlja: ";
             cin.ignore();
@@ -1717,14 +1760,14 @@ void pretraziAuta(Auto nizAuta[], int brAuta){
             cout << "\n\tOdabrali ste nepostojecu opciju.";
             promijeniBoju(7);
     }
-} // done
+} 
 
 void ispisUplatnice(Auto nizAuta[], int br){
 
 	Kupac k;
     string fajl = "uplatnica.txt";
 
-    cout << "\n\tZelite li izvrsiti pretragu auta prije kupovine (y/n)? "; // uslov
+    cout << "\n\tZelite li izvrsiti pretragu auta prije kupovine (y/n)? "; 
     cin.ignore();
     char get = cin.get();
 
@@ -1781,31 +1824,37 @@ void ispisUplatnice(Auto nizAuta[], int br){
     if(nacinP == 2){
 
         ofstream uplatnica("uplatnica.txt");
-        uplatnica << "------------------------------------------------------------\n";
-        uplatnica << "\t\t\tAutosalon 'KEJ' d.o.o.:\n";
-        uplatnica << "------------------------------------------------------------\n";
-        uplatnica << "\t\tIme i prezime: " << k.ime << " " << k.prezime << endl;
-        uplatnica << "\n\t\tINFORMACIJE O AUTOMOBILU: \n\tProizvodjac: " << nizAuta[izbor-1].proizvodjacAuta << "\n\tModel: " << nizAuta[izbor-1].modelAuta <<endl;
+        uplatnica << "-----------------------------------------------------------------------------------------\n";
+        uplatnica << "\n\t\t\t\tAutosalon 'KEJ' d.o.o.\n\n";
+        uplatnica << "-----------------------------------------------------------------------------------------\n";
+        uplatnica << "\n\t\tIme i prezime: " << k.ime << " " << k.prezime << endl;
+        uplatnica << "\n\n\t\tINFORMACIJE O AUTOMOBILU: \n\n\t\tProizvodjac: " << nizAuta[izbor-1].proizvodjacAuta << "\n\t\tModel: " << nizAuta[izbor-1].modelAuta <<endl;
         uplatnica << "\n\t\tUkupni iznos: "<< cijenaSaKamatom(nizAuta[izbor-1].cijena, nizAuta[izbor-1].cijena) << " KM." << endl;
-        uplatnica << "\n\t\t\tPotpis: _________________________\n";
-        uplatnica << "------------------------------------------------------------\n";
-        uplatnica << "\n\tTim Autosalona 'KEJ' Vam zeli sigurnu voznju\n";
-        uplatnica << "------------------------------------------------------------\n";
+        time_t now=time(0);		
+    	tm *ltm=localtime(&now);
+    	uplatnica << "\n\t\tDatum kupovine: "<<ltm->tm_mday<<"."<<1+ltm->tm_mon<<"."<<1900+ltm->tm_year<<"."<<endl;
+        uplatnica << "\n\n\n\t\t\t\t\t\tPotpis: _________________________\n\n";
+        uplatnica << "-----------------------------------------------------------------------------------------\n";
+        uplatnica << "\n\t\t\tTim Autosalona 'KEJ' Vam zeli sigurnu voznju!\n\n";
+        uplatnica << "-----------------------------------------------------------------------------------------\n";
         uplatnica.close();
     }
     else{
 
         ofstream uplatnica("uplatnica.txt");
-        uplatnica << "------------------------------------------------------------\n";
-        uplatnica << "\t\t\tAutosalon 'KEJ' d.o.o.:\n";
-        uplatnica << "------------------------------------------------------------\n";
+        uplatnica << "-----------------------------------------------------------------------------------------\n";
+        uplatnica << "\n\t\t\t\tAutosalon 'KEJ' d.o.o.\n\n";
+        uplatnica << "-----------------------------------------------------------------------------------------\n";
         uplatnica << "\t\tIme i prezime: " << k.ime << " " << k.prezime << endl;
-        uplatnica << "\n\t\tINFORMACIJE O AUTOMOBILU: \n\tProizvodjac: " << nizAuta[izbor-1].proizvodjacAuta << "\n\tModel: " << nizAuta[izbor-1].modelAuta <<endl;
-        uplatnica << "\n\t\tIznos: "<< nizAuta[izbor-1].cijena << " KM." << endl;
-        uplatnica << "\n\t\t\tPotpis: _________________________\n";
-        uplatnica << "------------------------------------------------------------\n";
-        uplatnica << "\n\tTim Autosalona 'KEJ' Vam zeli sigurnu voznju\n";
-        uplatnica << "------------------------------------------------------------\n";
+        uplatnica << "\n\n\t\tINFORMACIJE O AUTOMOBILU: \n\n\t\tProizvodjac: " << nizAuta[izbor-1].proizvodjacAuta << "\n\t\tModel: " << nizAuta[izbor-1].modelAuta <<endl;
+        uplatnica << "\n\t\tUkupni iznos: "<< nizAuta[izbor-1].cijena << " KM." << endl;
+        time_t now=time(0);		
+    	tm *ltm=localtime(&now);
+    	uplatnica << "\n\t\tDatum kupovine: "<<ltm->tm_mday<<"."<<1+ltm->tm_mon<<"."<<1900+ltm->tm_year<<"."<<endl;
+        uplatnica << "\n\n\n\t\t\t\t\t\tPotpis: _________________________\n\n";
+        uplatnica << "-----------------------------------------------------------------------------------------\n";
+        uplatnica << "\n\t\t\tTim Autosalona 'KEJ' Vam zeli sigurnu voznju!\n\n";
+        uplatnica << "-----------------------------------------------------------------------------------------\n";
         uplatnica.close();
 
     }
@@ -1828,7 +1877,7 @@ void prikaziMeniA(){			//meni za admina tj prodavca
     cout << "\t\t|\t5. Kraj"<<setw(32)<<"|\n";;
     cout << "\t\t==============================================\n";
 
-} // dira
+} 
 
 void prikaziMeniK(){			//meni za kupca
 	system("cls");
@@ -1837,12 +1886,12 @@ void prikaziMeniK(){			//meni za kupca
     cout << "\t\t==============================================\n";
     cout << "\t\t|\t1. Pregled automobila"<<setw(18)<<"|\n";;
     cout << "\t\t|\t2. Pretraga automobila"<<setw(17)<<"|\n";
-    cout << "\t\t|\t3. Kupovina automobila"<<setw(21)<<"|\n";
+    cout << "\t\t|\t3. Kupovina automobila"<<setw(17)<<"|\n";
     cout << "\t\t|\t4. Kraj"<<setw(32)<<"|\n";;
     cout << "\t\t==============================================\n";
-} // dira
+} 
 
-void mainMeniK(Kupac k, Auto a){
+void mainMeniK(Kupac k, Auto a){			//glavna funkcija za meni kupca
 
 		prikaziMeniK();
 
@@ -1876,7 +1925,7 @@ void mainMeniK(Kupac k, Auto a){
             auta>>nizAuta[br].motor.kubikaza;
 
 		 br++;
-		} // dira
+		} 
 
 		 int izbor;
 
@@ -1908,7 +1957,7 @@ void mainMeniK(Kupac k, Auto a){
                     promijeniBoju(7);
                 }
 
-		}while(izbor<1 || izbor>4); // dira
+		}while(izbor<1 || izbor>4); 
 
     	    switch(izbor){
         	    case 1:
@@ -2017,9 +2066,9 @@ void mainMeniK(Kupac k, Auto a){
 				}
 			}
     delete[] nizAuta;
-} //
+} 
 
-void mainMeniA(Auto a){
+void mainMeniA(Auto a){			//funkcija za glavni meni Admina
 
     int br=0;
     Auto *nizAuta=new Auto[50];
@@ -2055,7 +2104,7 @@ void mainMeniA(Auto a){
 
 
     prikaziMeniA();
-    
+    	int get;
     	int izbor;
 
         do{
@@ -2147,11 +2196,12 @@ void mainMeniA(Auto a){
 
 	        else{
 	        	cin.ignore();
-	            int get;
-
+				
             	cout << "\n\t-------------------------";
         	    cout << "\n\t0. Izlaz\n\t1. Nazad ";
         	    cout << "\n\t-------------------------";
+	        	cout << "\n\tVas izbor: ";
+        	    cin >> get;
         	    
         	    while(get < 0 || get > 1 )
 				{
@@ -2200,9 +2250,9 @@ void mainMeniA(Auto a){
 				}
 			}
     delete[] nizAuta;
-} // dira
+} 
 
-int main(){
+int main(){			//glavna funkcija
 	welcome();
 	cout<<"\n--------------------------------------------------------------------------------\n";
 
@@ -2256,7 +2306,7 @@ int main(){
 		do{
 			cin.ignore();
 
-			cout << "\n\n\n\t\t\tusername: "; 
+			cout << "\n\n\n\t\t\tusername: "; 	//provjera admina
 			getline(cin, username);
 			cout << "\n\t\t\tpassword: ";
 			cin >> password;
@@ -2293,14 +2343,14 @@ int main(){
 			}
 		}while(username!="admin" || password!="admin");
 
-        mainMeniA(a);
+        mainMeniA(a);	//poziv funkcije za meni
 
 	}else{
         Kupac k;
 		k.prijavaKupca();
-		mainMeniK(k, a);
+		mainMeniK(k, a);	//poziv funkcije za meni
 	}
 
 cout<<"\n--------------------------------------------------------------------------------\n";
-return 0;
+return 0;	//kraj
 }
