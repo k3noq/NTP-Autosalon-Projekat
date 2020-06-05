@@ -4,7 +4,7 @@
 #include<cstring>		// omogucen rad funkcija za manipulaciju sa stringovima
 #include<fstream>		// omogucena maipulacija fajlovima
 #include<algorithm>	    // za funkciju sort
-//#include <windows.h> 	// za boje - radi samo na windows OS-u
+#include <windows.h> 	// za boje - radi samo na windows OS-u
 #include<ctime> 		// za koristenje funkcije za racunanje vremena
 
 /*
@@ -15,18 +15,18 @@
 
 using namespace std;
 
-//void //promijeniBoju(int zeljenaBoja){                                        	//  funkcija za manipulaciju boje teksta pri ispisu
-//     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), zeljenaBoja); 	//  izvor: stackoverflow
-//}
+void promijeniBoju(int zeljenaBoja){                                        	//  funkcija za manipulaciju boje teksta pri ispisu
+     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), zeljenaBoja); 	//  izvor: stackoverflow
+}
 
 string brk = "\n********************************************************************************\n";
 
 void welcome(){				//  funckija za ispis pocetne poruke
     cout << "================================================================================\n";
     cout << "|\t";
-	//promijeniBoju(2);
+	promijeniBoju(2);
     cout << setw(34)<<"WELCOME"<<setw(39);
-    //promijeniBoju(7);
+    promijeniBoju(7);
     cout <<"|\n";
     cout << "================================================================================\n";
     cout << "|Ovo je program koji omogucava rad nad podacima karakteristicnim za automobile |"<<"\n";
@@ -99,9 +99,9 @@ struct Kupac{			//sturktura za kupca
 			{
 				if(isdigit(Ime[i]))
 				{
-					//promijeniBoju(4);
+					promijeniBoju(4);
 					cout<<"\n\t\tUneseno ime sadrzi broj!!!"<<endl;
-					//promijeniBoju(7);
+					promijeniBoju(7);
 					cout<<"\n\tUnesite ime: ";
 					cin.getline(Ime,40);
 					provjera = true;
@@ -144,9 +144,9 @@ struct Kupac{			//sturktura za kupca
 			{
 				if(isdigit(Prezime[i]))
 				{
-					//promijeniBoju(4);
+					promijeniBoju(4);
 					cout<<"\n\t\tUneseno ime sadrzi broj!!!"<<endl;
-					//promijeniBoju(7);
+					promijeniBoju(7);
 					cout<<"\n\tUnesite ime: ";
 					cin.getline(Prezime,40);
 					provjera = true;
@@ -208,20 +208,20 @@ struct Kupac{			//sturktura za kupca
 				if(cin.fail())
 				{
 
-	        	cin.clear();
+                    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite nacin placanja: 1-gotovina, 2-karticno!\n";
 	        	    cout<< "\tPritisnite ENTER da nastavite!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> x;
 		}
 
@@ -250,9 +250,9 @@ struct Kupac{			//sturktura za kupca
 
     			while(this->brRacuna<1)
 				{
-					//promijeniBoju(4);
+					promijeniBoju(4);
             		cout<<"\n\tPonovite unos: ";
-            		//promijeniBoju(7);
+            		promijeniBoju(7);
             		cin >> this->brRacuna;
 				}
 
@@ -285,7 +285,7 @@ struct Kupac{			//sturktura za kupca
 
 	void prijavaKupca(){		//sturkturalna funkcija za pracenje posjecivanja programa
 
-		system("clear");
+		system("cls");
 		cout << "================================================================================\n";
   		cout << "| \t\tPrije nego sto nastavite istrazivati nasu ponudu"<< setw(17) <<"|\n";
     	cout << "|\t\t    |Molimo Vas da unesete sljedece podatke|"<<setw(21)<<"|\n";
@@ -307,9 +307,9 @@ struct Kupac{			//sturktura za kupca
 			{
 				if(isdigit(Ime[i]))
 				{
-					//promijeniBoju(4);
+					promijeniBoju(4);
 					cout<<"\n\t\tUneseno ime sadrzi broj!!!"<<endl;
-					//promijeniBoju(7);
+					promijeniBoju(7);
 					cout<<"\n\tUnesite ime: ";
 					cin.getline(Ime,40);
 					provjera = true;
@@ -352,9 +352,9 @@ struct Kupac{			//sturktura za kupca
 			{
 				if(isdigit(Prezime[i]))
 				{
-					//promijeniBoju(4);
+					promijeniBoju(4);
 					cout<<"\n\t\tUneseno prezime sadrzi broj!!!"<<endl;
-					//promijeniBoju(7);
+					promijeniBoju(7);
 					cout<<"\n\tUnesite ime: ";
 					cin.getline(Prezime,40);
 					provjera = true;
@@ -481,10 +481,10 @@ struct Auto{		//struktura auto
         	{
 	        	if(isdigit(a.proizvodjacAuta.at(i)))
 	        	{
-	        		//promijeniBoju(4);
+	        		promijeniBoju(4);
 	        		cout<<"\n\tNe postoji proizvodjac sa brojevima u nazivu!"<<endl;
 	            	cout<<"\n\tPonovite unos: ";
-	            	//promijeniBoju(7);
+	            	promijeniBoju(7);
 	            	getline(cin, a.proizvodjacAuta);
 	        		provjera = true;
 	        		break;
@@ -536,10 +536,10 @@ struct Auto{		//struktura auto
         	{
 	        	if(isdigit(a.zemljaPorijekla.at(i)))
 	        	{
-	        		//promijeniBoju(4);
+	        		promijeniBoju(4);
 	        		cout<<"\n\tNe postoji zemlja sa brojevima u nazivu!"<<endl;
 	            	cout<<"\n\tPonovite unos: ";
-	            	//promijeniBoju(7);
+	            	promijeniBoju(7);
 	            	getline(cin, a.zemljaPorijekla);
 	        		provjera = true;
 	        		break;
@@ -580,10 +580,10 @@ struct Auto{		//struktura auto
         	{
 	        	if(isdigit(a.boja.at(i)))
 	        	{
-	        		//promijeniBoju(4);
+	        		promijeniBoju(4);
 	        		cout<<"\n\tNe postoji boja sa brojevima u nazivu!"<<endl;
 	            	cout<<"\n\tPonovite unos: ";
-	            	//promijeniBoju(7);
+	            	promijeniBoju(7);
 	            	getline(cin, a.boja);
 	        		provjera = true;
 	        		break;
@@ -623,26 +623,26 @@ struct Auto{		//struktura auto
 		{
 				if(cin.fail())
 				{
-	        	cin.clear();
+                    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite broj vrata(2-8)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite broj vrata(2-8)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> a.brVrata;
 		}
 
@@ -657,24 +657,24 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite broj stepenog prenosa(3-10)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
 
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite broj stepenog prenosa(3-10)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> a.brStepeniPrenosa;
 		}
 
@@ -689,23 +689,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite kilometrazu(0-999999)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite kilometrazu(0-999999)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> a.kilometraza;
 		}
 
@@ -720,23 +720,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite godiste(1886-2020)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite godiste(1886-2020)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            //promijeniBoju(4);
+            promijeniBoju(4);
             cout<<"\n\tPonovite unos: ";
-            //promijeniBoju(7);
+            promijeniBoju(7);
             cin >> a.godiste;
 		}
 
@@ -751,23 +751,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite cijenu!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite cijenu!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> a.cijena;
 		}
 
@@ -783,23 +783,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite potrosnju na 100km!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite potrosnju na 100km!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> a.cijena;
 		}
 
@@ -818,23 +818,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite da li je automobil registrovan (1-Da, 0-Ne)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite da li je automobil registrovan (1-Da, 0-Ne)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-        	//promijeniBoju(4);
+        	promijeniBoju(4);
             cout<<"\n\tPonovite unos: ";
-            //promijeniBoju(7);
+            promijeniBoju(7);
             cin>>izbor;
 		}
 
@@ -858,23 +858,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite da li je automobil servisiran (1-Da, 0-Ne)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite da li je automobil servisiran (1-Da, 0-Ne)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-        	//promijeniBoju(4);
+        	promijeniBoju(4);
             cout<<"\n\tPonovite unos: ";
-            //promijeniBoju(7);
+            promijeniBoju(7);
             cin>>izbor;
 		}
 
@@ -898,23 +898,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tUnijeli ste znak umjesto broja. Molimo unesite da li automobil ima klimu (1-Da, 0-Ne)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tUnijeli ste znak umjesto broja. Molimo unesite da li automobil ima klimu (1-Da, 0-Ne)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-        	//promijeniBoju(4);
+        	promijeniBoju(4);
             cout<<"\n\tPonovite unos: ";
-            //promijeniBoju(7);
+            promijeniBoju(7);
             cin>>izbor;
 		}
 
@@ -940,23 +940,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite ispravno (1-nov, 2-polovan)!\n";
 	        	    cout << "\n\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite (1-nov, 2-polovan)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\t\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> a.stanje;
 		}
 
@@ -969,23 +969,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite ispravno (1-dizel, 2-benzin, 3-plin)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite ispravno (1-dizel, 2-benzin, 3-plin)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\t\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> a.gorivo;
 		}
 
@@ -1000,23 +1000,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite ispravno (1-prednji, 2-zadnji, 3-4x4)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite ispravno (1-prednji, 2-zadnji, 3-4x4)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\t\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> a.pogon;
 		}
 
@@ -1031,23 +1031,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite ispravno (1-manual, 2-automatik)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite ispravno (1-manual, 2-automatik)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\t\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> a.transmisija;
             	cin. get();
 		}
@@ -1066,23 +1066,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite konjske snage!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite konjske snage!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> a.motor.konjskeSnage;
 		}
 
@@ -1095,23 +1095,23 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tUnijeli ste znak umjesto broja. Molimo unesite kilovate!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite kilovate!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> a.motor.kW;
 		}
 
@@ -1126,24 +1126,24 @@ struct Auto{		//struktura auto
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\t\tMolimo unesite kubikazu!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
 
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite kubikazu!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> a.motor.kubikaza;
 		}
 
@@ -1300,24 +1300,24 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite izbor ispravno (1-6)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
 
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite izbor ispravno (1-6)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> izbor;
 		}
 
@@ -1349,24 +1349,24 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite ispravnu minimalnu cijenu!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
 
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite ispravnu minimalnu cijenu!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> minCijena;
 			}
 
@@ -1383,24 +1383,24 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite ispravnu maksimalnu cijenu!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
 
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite ispravnu maksimalnu cijenu!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> maksCijena;
 			}
 
@@ -1441,10 +1441,10 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 	        	{
 		        	if(isdigit(imeProizvodjaca.at(i)))
 		        	{
-		        		//promijeniBoju(4);
+		        		promijeniBoju(4);
 		        		cout<<"\n\tNe postoji proizvodjac sa brojevima u nazivu!"<<endl;
 		            	cout<<"\n\tPonovite unos: ";
-		            	//promijeniBoju(7);
+		            	promijeniBoju(7);
 		            	getline(cin, imeProizvodjaca);
 		        		provjera = true;
 		        		break;
@@ -1512,10 +1512,10 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 	        	{
 		        	if(isdigit(zemlja.at(i)))
 		        	{
-		        		//promijeniBoju(4);
+		        		promijeniBoju(4);
 		        		cout<<"\n\tNe postoji proizvodjac sa brojevima u nazivu!"<<endl;
 		            	cout<<"\n\tPonovite unos: ";
-		            	//promijeniBoju(7);
+		            	promijeniBoju(7);
 		            	getline(cin, zemlja);
 		        		provjera = true;
 		        		break;
@@ -1584,10 +1584,10 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 	        	{
 		        	if(isdigit(imeProizvodjaca.at(i)))
 		        	{
-		        		//promijeniBoju(4);
+		        		promijeniBoju(4);
 		        		cout<<"\n\tIme proizvodjaca ne moze imati brojeve u sebi!"<<endl;
 		            	cout<<"\n\tPonovite unos: ";
-		            	//promijeniBoju(7);
+		            	promijeniBoju(7);
 		            	getline(cin, imeProizvodjaca);
 		        		provjera = true;
 		        		break;
@@ -1628,10 +1628,10 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 	        	{
 		        	if(isdigit(bojaAuta.at(i)))
 		        	{
-		        		//promijeniBoju(4);
+		        		promijeniBoju(4);
 		        		cout<<"\n\tNaziv boje ne moze imati brojeve u sebi!"<<endl;
 		            	cout<<"\n\tPonovite unos: ";
-		            	//promijeniBoju(7);
+		            	promijeniBoju(7);
 		            	getline(cin, bojaAuta);
 		        		provjera = true;
 		        		break;
@@ -1654,24 +1654,24 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite ispravnu cijenu auta!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
 
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite ispravnu cijenu auta!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> cijenaAuta;
 			}
 
@@ -1686,24 +1686,24 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite ispravno stanje auta (1-nov, 2-polovan)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
 
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite ispravno stanje auta (1-nov, 2-polovan)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> stanjeAuta;
 			}
 
@@ -1718,24 +1718,24 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite ispravnu opciju za gorivo (1-dizel, 2-benzin, 3-plin)!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
 
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite ispravnu opciju za gorivo: (1-dizel, 2-benzin, 3-plin)!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> gorivoAuta;
 			}
 
@@ -1766,9 +1766,9 @@ void pretraziAuta(Auto nizAuta[], int brAuta){		//funkcija za pretragu auta
 
         default:
 
-        	//promijeniBoju(4);
+        	promijeniBoju(4);
             cout << "\n\tOdabrali ste nepostojecu opciju.";
-            //promijeniBoju(7);
+            promijeniBoju(7);
     }
 }
 
@@ -1811,24 +1811,24 @@ void ispisUplatnice(Auto nizAuta[], int br){
 	        	    cin.clear();
 	    	        cin.ignore(1000, '\n');
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	        	    cout << "\n\tMolimo unesite ispravno izbor (1-"<<br<<")!\n";
 	        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-	        	    //promijeniBoju(7);
+	        	    promijeniBoju(7);
 
 					cin. get();
 
         		}
         		else
         		{
-        			//promijeniBoju(4);
+        			promijeniBoju(4);
         			cout << "\n\tMolimo unesite ispravno izbor (1-"<<br<<")!\n";
-        			//promijeniBoju(7);
+        			promijeniBoju(7);
 				}
 
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
             	cout<<"\n\tPonovite unos: ";
-            	//promijeniBoju(7);
+            	promijeniBoju(7);
             	cin >> izbor;
 			}
 
@@ -1877,13 +1877,13 @@ void ispisUplatnice(Auto nizAuta[], int br){
     }
 
 
-    //promijeniBoju(2);
+    promijeniBoju(2);
     cout << "\n\tUplatnica uspjesno snimljena u " << fajl << endl;
-	//promijeniBoju(7);
+	promijeniBoju(7);
 }
 
 void prikaziMeniA(){			//meni za admina tj prodavca
-	system("clear");
+	system("cls");
     cout << "\t\t==============================================\n";
     cout << "\t\t|\t\t"<<setw(9)<<"MENI:"<<setw(22)<<"|\n";
     cout << "\t\t==============================================\n";
@@ -1897,7 +1897,7 @@ void prikaziMeniA(){			//meni za admina tj prodavca
 }
 
 void prikaziMeniK(){			//meni za kupca
-	system("clear");
+	system("cls");
     cout << "\t\t==============================================\n";
     cout << "\t\t|\t\t"<<setw(9)<<"MENI:"<<setw(22)<<"|\n";
     cout << "\t\t==============================================\n";
@@ -2047,12 +2047,12 @@ void mainMeniK(Kupac k, Auto a){			//glavna funkcija za meni kupca
 
         	    cin.clear();
     	        cin.ignore(1000, '\n');
-	            system("clear");
+	            system("cls");
 
             	cout<<"\n________________________________________________________________________________\n\n";
-            	//promijeniBoju(4);
+            	promijeniBoju(4);
         	    cout << "\tUnijeli ste znak umjesto broja. Molimo pokusajte ponovo\n";
-        	    //promijeniBoju(7);
+        	    promijeniBoju(7);
     	        cout<<"\n________________________________________________________________________________\n\n";
 
 	            prikaziMeniK();
@@ -2060,16 +2060,16 @@ void mainMeniK(Kupac k, Auto a){			//glavna funkcija za meni kupca
         	}
                 if(izbor<1 || izbor>5)
                 {
-                    //promijeniBoju(4);
+                    promijeniBoju(4);
                     cout<<"\n\tPonovite unos"<<endl;
-                    //promijeniBoju(7);
+                    promijeniBoju(7);
                 }
 
 		}while(izbor<1 || izbor>5);
 
     	    switch(izbor){
         	    case 1:
-    	            system("clear");
+    	            system("cls");
 
 	                cout << brk;
                 	cout << boldiraj << "\n\t\t\t   Pregled svih automobila\n" << ukloniBold;
@@ -2081,7 +2081,7 @@ void mainMeniK(Kupac k, Auto a){			//glavna funkcija za meni kupca
 	                break;
 
             	case 2:
-        	        system("clear");
+        	        system("cls");
 
     	            cout << brk;
 	                cout << boldiraj << "\n\t\t\t     Pretraga automobila\n" << ukloniBold;
@@ -2093,7 +2093,7 @@ void mainMeniK(Kupac k, Auto a){			//glavna funkcija za meni kupca
     	            break;
 
     	        case 3:
-    	        	system("clear");
+    	        	system("cls");
 
     	        	cout << brk;
 	                cout << boldiraj << "\n\t\t\t     Kupovina automobila\n" << ukloniBold;
@@ -2103,7 +2103,7 @@ void mainMeniK(Kupac k, Auto a){			//glavna funkcija za meni kupca
 
                 case 4:
 
-                    system("clear");
+                    system("cls");
 
                     cout << brk;
 	                cout << boldiraj << "\n\t\t\t     Panel za feedback\n" << ukloniBold;
@@ -2115,11 +2115,11 @@ void mainMeniK(Kupac k, Auto a){			//glavna funkcija za meni kupca
 
     	        case 5:
 
-	                system("clear");
+	                system("cls");
 	                cout << brk;
-					//promijeniBoju(2);
+					promijeniBoju(2);
             	    cout << boldiraj << "\n\t\tHvala Vam na posjeti! Prijatno i dovidjenja!\n" << ukloniBold ;
-            	    //promijeniBoju(7);
+            	    promijeniBoju(7);
             	    cout<<brk;
         	        break;
     	    }
@@ -2148,24 +2148,24 @@ void mainMeniK(Kupac k, Auto a){			//glavna funkcija za meni kupca
 		        	    cin.clear();
 		    	        cin.ignore(1000, '\n');
 
-		            	//promijeniBoju(4);
+		            	promijeniBoju(4);
 		        	    cout << "\n\n\tMolimo unesite ispravno izbor (0 ili 1)!\n";
 		        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-		        	    //promijeniBoju(7);
+		        	    promijeniBoju(7);
 
 						cin. get();
 
 	        		}
 	        		else
 	        		{
-	        			//promijeniBoju(4);
+	        			promijeniBoju(4);
 	        			cout << "\n\n\tMolimo unesite ispravno izbor (0 ili 1)!\n";
-	        			//promijeniBoju(7);
+	        			promijeniBoju(7);
 					}
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	            	cout<<"\n\tPonovite unos: ";
-	            	//promijeniBoju(7);
+	            	promijeniBoju(7);
 	            	cin >> get;
 				}
 
@@ -2173,14 +2173,14 @@ void mainMeniK(Kupac k, Auto a){			//glavna funkcija za meni kupca
     	        cout<<"\n";
 
 	            if(get==1){
-            	    system("clear");
+            	    system("cls");
         	        mainMeniK(k,a);
     	        }else{
-    	        	system("clear");
+    	        	system("cls");
 	                cout << brk;
-					//promijeniBoju(2);
+					promijeniBoju(2);
             	    cout << boldiraj << "\n\t\tHvala Vam na posjeti! Prijatno i dovidjenja!\n" << ukloniBold ;
-            	    //promijeniBoju(7);
+            	    promijeniBoju(7);
             	    cout<<brk;
         	        system("exit");
 				}
@@ -2236,7 +2236,7 @@ void mainMeniA(Auto a){			//funkcija za glavni meni Admina
 
         	    cin.clear();
     	        cin.ignore(1000,'\n');
-	            system("clear");
+	            system("cls");
 
             	cout<<"\n________________________________________________________________________________\n\n";
         	    cout << "\tUnijeli ste znak umjesto broja. Molimo pokusajte ponovo\n";
@@ -2247,16 +2247,16 @@ void mainMeniA(Auto a){			//funkcija za glavni meni Admina
         	}
                 if(izbor<1 || izbor>5)
                 {
-                    //promijeniBoju(4);
+                    promijeniBoju(4);
                     cout<<"\n\tPonovite unos!"<<endl;
-                    //promijeniBoju(7);
+                    promijeniBoju(7);
                 }
 
 		}while(izbor<1 || izbor>5);
 
     	    switch(izbor){
 	            case 1:
-                	system("clear");
+                	system("cls");
 
             	    cout<<brk;
         	        cout << boldiraj << "\n\t\t\t      Unos automobila\n" << ukloniBold;
@@ -2267,7 +2267,7 @@ void mainMeniA(Auto a){			//funkcija za glavni meni Admina
     	            break;
 
         	    case 2:
-    	            system("clear");
+    	            system("cls");
 
 	                cout << brk;
                 	cout << boldiraj << "\n\t\t\t   Pregled svih automobila\n" << ukloniBold;
@@ -2279,7 +2279,7 @@ void mainMeniA(Auto a){			//funkcija za glavni meni Admina
 	                break;
 
             	case 3:
-        	        system("clear");
+        	        system("cls");
 
     	            cout << brk;
 	                cout << boldiraj << "\n\t\t\t     Pretraga automobila\n" << ukloniBold;
@@ -2291,7 +2291,7 @@ void mainMeniA(Auto a){			//funkcija za glavni meni Admina
     	            break;
 
 	            case 4:
-            	    system("clear");
+            	    system("cls");
 
         	        cout << brk;
     	            cout << boldiraj << "\n\t\t\t      Ispis uplatnice\n" << ukloniBold;
@@ -2303,11 +2303,11 @@ void mainMeniA(Auto a){			//funkcija za glavni meni Admina
         	        break;
 
     	        case 5:
-	                system("clear");
+	                system("cls");
 	                cout << brk;
-					//promijeniBoju(2);
+					promijeniBoju(2);
             	    cout << boldiraj << "\n\t\tHvala Vam na posjeti! Prijatno i dovidjenja!\n" << ukloniBold ;
-            	    //promijeniBoju(7);
+            	    promijeniBoju(7);
             	    cout<<brk;
         	        break;
     	    }
@@ -2333,24 +2333,24 @@ void mainMeniA(Auto a){			//funkcija za glavni meni Admina
 		        	    cin.clear();
 		    	        cin.ignore(1000, '\n');
 
-		            	//promijeniBoju(4);
+		            	promijeniBoju(4);
 		        	    cout << "\n\n\tMolimo unesite ispravno izbor (0 ili 1)!\n";
 		        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-		        	    //promijeniBoju(7);
+		        	    promijeniBoju(7);
 
 						cin. get();
 
 	        		}
 	        		else
 	        		{
-	        			//promijeniBoju(4);
+	        			promijeniBoju(4);
 	        			cout << "\n\n\tMolimo unesite ispravno izbor (0 ili 1)!\n";
-	        			//promijeniBoju(7);
+	        			promijeniBoju(7);
 					}
 
-	            	//promijeniBoju(4);
+	            	promijeniBoju(4);
 	            	cout<<"\n\tPonovite unos: ";
-	            	//promijeniBoju(7);
+	            	promijeniBoju(7);
 	            	cin >> get;
 				}
 
@@ -2358,14 +2358,14 @@ void mainMeniA(Auto a){			//funkcija za glavni meni Admina
     	        cout<<"\n";
 
 	            if(get==1){
-            	    system("clear");
+            	    system("cls");
         	        mainMeniA(a);
     	        }else{
-    	        	system("clear");
+    	        	system("cls");
 	                cout << brk;
-					//promijeniBoju(2);
+					promijeniBoju(2);
             	    cout << boldiraj << "\n\t\tHvala Vam na posjeti! Prijatno i dovidjenja!\n" << ukloniBold ;
-            	    //promijeniBoju(7);
+            	    promijeniBoju(7);
             	    cout<<brk;
         	        system("exit");
 				}
@@ -2394,24 +2394,24 @@ int main(){
        	    cin.clear();
    	        cin.ignore(1000, '\n');
 
-           	//promijeniBoju(4);
+           	promijeniBoju(4);
        	    cout << "\n\tMolimo unesite ispravno izbor (1 ili 2)!\n";
        	    cout << "\tZa nastavak pritisnite ENTER!"<<endl;
-       	    //promijeniBoju(7);
+       	    promijeniBoju(7);
 
 			cin. get();
 
    		}
    		else
    		{
-   			//promijeniBoju(4);
+   			promijeniBoju(4);
    			cout << "\n\tMolimo unesite ispravno izbor (1 ili 2)!\n";
-   			//promijeniBoju(7);
+   			promijeniBoju(7);
 		}
 
-           	//promijeniBoju(4);
+           	promijeniBoju(4);
            	cout<<"\n\tPonovite unos: ";
-           	//promijeniBoju(7);
+           	promijeniBoju(7);
            	cin >> izbor;
 	}
 
@@ -2421,7 +2421,7 @@ int main(){
 		string username; //zadano je da bude admin
 		string password; //zadano je da bude admin
 
-		system("clear");
+		system("cls");
 		int brPokusaja=0;
 
 		do{
@@ -2435,31 +2435,31 @@ int main(){
 
 			if(username != "admin" && password != "admin" && brPokusaja<3){
 
-				system("clear");
-				//promijeniBoju(4);
+				system("cls");
+				promijeniBoju(4);
            		cout<<"\t\tNeisparvan unos";
-           		//promijeniBoju(7);
+           		promijeniBoju(7);
            		cout << "\t\t\t\tBroj pokusaja: " << 3-brPokusaja<<endl;
 
 			}else if(password != "admin" && brPokusaja<3){
 
-				system("clear");
-				//promijeniBoju(4);
+				system("cls");
+				promijeniBoju(4);
            		cout << "\t\tNeispravan password";
-           		//promijeniBoju(7);
+           		promijeniBoju(7);
            		cout << "\t\t\t\tBroj pokusaja: " << 3-brPokusaja<<endl;
 
 			}else if(username!="admin" && brPokusaja<3){
 
-				system("clear");
-				//promijeniBoju(4);
+				system("cls");
+				promijeniBoju(4);
            		cout << "\t\tNeispravan username";
-           		//promijeniBoju(7);
+           		promijeniBoju(7);
            		cout << "\t\t\t\tBroj pokusaja: " << 3-brPokusaja << endl;
 
 			}
 			if(brPokusaja==3){
-				system("clear");
+				system("cls");
 				main();
 			}
 		}while(username!="admin" || password!="admin");
