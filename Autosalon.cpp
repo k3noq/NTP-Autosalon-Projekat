@@ -23,9 +23,11 @@ string brk = "\n****************************************************************
 
 void welcome(){				//  funckija za ispis pocetne poruke
     cout << "================================================================================\n";
-    promijeniBoju(2);
-    cout << "|\t"<<setw(34)<<"WELCOME"<<setw(39)<<"|\n";
+    cout << "|\t";
+	promijeniBoju(2);
+    cout << setw(34)<<"WELCOME"<<setw(39);
     promijeniBoju(7);
+    cout <<"|\n";
     cout << "================================================================================\n";
     cout << "|Ovo je program koji omogucava rad nad podacima karakteristicnim za automobile |"<<"\n";
     cout << "|\t\t    |Ovaj program je simulacija autosalona|"<<setw(22)<<"|\n";
@@ -285,7 +287,7 @@ struct Kupac{			//sturktura za kupca
 
 		system("cls");
 		cout << "================================================================================\n";
-  		cout << "| \t\tPrije nego sto nastavite istrazivati nasu ponudu\t\t|"<<"\n";
+  		cout << "| \t\tPrije nego sto nastavite istrazivati nasu ponudu"<< setw(17) <<"|\n";
     	cout << "|\t\t    |Molimo Vas da unesete sljedece podatke|"<<setw(21)<<"|\n";
     	cout << "================================================================================\n";
 
