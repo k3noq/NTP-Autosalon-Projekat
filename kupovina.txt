@@ -1,0 +1,55 @@
+Podaci o kupcu:
+
+Ime:			Kenan
+Prezime:		Genjac
+Adresa:			Porijecani 16
+Nacin placanja:		Karticno
+Broj racuna:		1232435
+Datum kupovine:		4.6.2020.
+Vrijeme kupovine:	18:53:57
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			Kenan
+Prezime:		Genjac
+Adresa:			Visoko
+Nacin placanja:		Karticno
+Broj racuna:		12312123
+Datum kupovine:		4.6.2020.
+Vrijeme kupovine:	18:55:37
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			Kemica
+Prezime:		Legenda
+Adresa:			Visoko
+Nacin placanja:		Karticno
+Broj racuna:		12312
+Datum kupovine:		4.6.2020.
+Vrijeme kupovine:	18:58:18
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			Kenan
+Prezime:		Kenan
+Adresa:			Visoko
+Nacin placanja:		Karticno
+Broj racuna:		13123
+Datum kupovine:		4.6.2020.
+Vrijeme kupovine:	18:59:43
+
+**************************************************
+Podaci o kupcu:
+
+Ime:			Kenan
+Prezime:		Genjac
+Adresa:			Porijecani 16, visoko
+Nacin placanja:		Karticno
+Broj racuna:		12321312
+Datum kupovine:		5.6.2020.
+Vrijeme kupovine:	13:7:36
+
+**************************************************
